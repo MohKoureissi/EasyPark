@@ -7,6 +7,10 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { MatTableModule} from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -16,12 +20,15 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     HttpClientModule,
     ComponentsModule,
     RouterModule,
-    AppRoutingModule,
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    AppRoutingModule, 
+    MatTableModule,
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent,
-
+    AdminLayoutComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
