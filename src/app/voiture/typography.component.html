@@ -2,9 +2,10 @@
   <div class="container-fluid">
     <div class="card">
       <div class="row">
-        <div class="card-header card-header-danger col-lg-3 col-md-12" style="margin-left: 70%;">
+        <div class="card-header card-header-danger col-lg-3 col-md-12" >
             <!-- <h2 class="card-title">+ Nouvelle Voiture</h2> style="width: 25%; height: 5rem; align-self: self-end;"    -->
-            <button class="btn-danger" style="width: 90%;margin:auto;height: 100%;font-size: x-large;border: none;">+ Nouvelle Voiture</button>
+            <button class="btn-danger" (click)="openDialog()" style="width: 90%;margin:auto;height: 100%;font-size: x-large;border: none;">+ Nouvelle Voiture</button>
+            <!-- <button mat-raised-button (click)="openDialog()">Open dialog without animation</button> -->
         </div>
       </div>
         <div class="card-body">

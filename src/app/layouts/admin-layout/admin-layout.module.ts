@@ -14,6 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { LocationVoitureComponent } from 'app/location-voiture/location-voiture.component';
+import { VoitureFormulaireComponent } from 'app/voiture-formulaire/voiture-formulaire.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { LocationVoitureComponent } from 'app/location-voiture/location-voiture.
     TypographyComponent,
     NotificationsComponent,
     LocationVoitureComponent,
+    VoitureFormulaireComponent
   ]
 })
 

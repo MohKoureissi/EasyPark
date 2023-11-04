@@ -11,6 +11,9 @@ import { MatTableModule} from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import { VoitureFormulaireComponent } from './voiture-formulaire/voiture-formulaire.component';
 
 @NgModule({
   imports: [
@@ -25,10 +28,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatPaginatorModule,
     AppRoutingModule, 
     MatTableModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
