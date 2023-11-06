@@ -4,3 +4,7 @@
     border-color: #00bcd4;
     box-shadow: none;
 }
+.sidebar[data-color=azure] li.active > a {
+    background-color: #308D89;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4);
+}
