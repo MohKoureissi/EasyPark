@@ -13,7 +13,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
-import { VoitureFormulaireComponent } from './voiture-formulaire/voiture-formulaire.component';
+import { VenteComponent } from './vente/vente.component';
+import { VenteFormulaireComponent } from './vente-formulaire/vente-formulaire.component';
+import { MaintenanceComponent } from './maintenance/maintenance.component';
+import { MaintenanceFormulaireComponent } from './maintenance-formulaire/maintenance-formulaire.component';
 
 @NgModule({
   imports: [
@@ -34,6 +37,7 @@ import { VoitureFormulaireComponent } from './voiture-formulaire/voiture-formula
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+   
     
   ],
   providers: [],

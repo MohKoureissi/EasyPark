@@ -10,22 +10,24 @@
       </div>
         <div class="card-body">
           <div class="row">
-            <div class="card col-lg-3 col-md-12" style="width: 30rem;">
-                <img src="/assets/img/Lux.png" class="card-img-top" alt="...">
+            <div class="card col-lg-3 col-md-12"  *ngIf="voitureArr.length >0" style="width: 30rem;">
+              <div *ngFor="let voiture of voitureArr">
+                <img src="{{voiture.photo1}}" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title" style="font-weight: bold;">GMC 700</h5>
-                  <p class="card-text" style="font-size: large;">Quantité: 5</p>
+                  <h5 class="card-title" style="font-weight: bold;">{{voiture.nom}}</h5>
+                  <p class="card-text" style="font-size: large;">Quantité: {{voiture.quantite}}</p>
                   <a style="margin-left: 10%; width: 80%; font-size: large;" href="#" class="btn">Details</a>
                 </div>
               </div>
-            <div class="card col-lg-3 col-md-12" style="width: 30rem;">
+              </div>
+            <!-- <div class="card col-lg-3 col-md-12" style="width: 30rem;">
                 <img src="/assets/img/pickup.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title" style="font-weight: bold;">GMC 700</h5>
                   <p class="card-text" style="font-size: large;">Quantité: 5</p>
                   <a style="margin-left: 10%; width: 80%; font-size: large;" href="#" class="btn btn-info">Details</a>
                 </div>
-              </div>
+              </div> -->
             </div>
         </div>
     </div>

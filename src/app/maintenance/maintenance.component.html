@@ -2,12 +2,12 @@
     <div class="container-fluid">
         <div class="row">
           <div class="col-md-4-lg-12">
-              <button style="font-size: larger; margin-left: 32px;padding: 9px; border: none; border-radius: 7px;" (click)="openDialog()" class="btn-info">+ Nouvelle Location</button>
+              <button style="font-size: larger;margin-left: 32px;padding: 9px; border: none; border-radius: 7px;" (click)="openDialog()" class="btn-info">+ Nouvelle Maintenance</button>
           </div>
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header card-header-info">
-                        <h2 class="card-title">Mes Locations</h2>
+                    <div class="card-header card-header-warning">
+                        <h2 class="card-title">Maintenances Effectuées</h2>
                     </div>
                     <div class="card-body">
                         <!-- <div class="table-responsive"> -->
@@ -20,17 +20,17 @@
                                 <th mat-header-cell *matHeaderCellDef> ID Voiture </th>
                                 <td mat-cell *matCellDef="let element"> {{element.voiture}} </td>
                               </ng-container>
-                              <ng-container matColumnDef="client">
-                                <th mat-header-cell *matHeaderCellDef> ID Client </th>
-                                <td mat-cell *matCellDef="let element"> {{element.client}} </td>
+                              <ng-container matColumnDef="prix">
+                                <th mat-header-cell *matHeaderCellDef> Prix </th>
+                                <td mat-cell *matCellDef="let element"> {{element.prix}} </td>
                               </ng-container>
                               <ng-container matColumnDef="date">
                                 <th mat-header-cell *matHeaderCellDef> Date </th>
                                 <td mat-cell *matCellDef="let element"> {{element.date}} </td>
                               </ng-container>
-                              <ng-container matColumnDef="duree">
-                                <th mat-header-cell *matHeaderCellDef> Durée </th>
-                                <td mat-cell *matCellDef="let element"> {{element.duree}} </td>
+                              <ng-container matColumnDef="description">
+                                <th mat-header-cell *matHeaderCellDef> Description </th>
+                                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
                               </ng-container>
                           
                               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
