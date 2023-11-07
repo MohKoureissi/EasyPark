@@ -2,13 +2,31 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {FormsModule, NgForm} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+interface Voiture {
+  value: number;
+  viewValue: string;
+};
+interface Client{
+  value: number;
+  viewValue: string;
 
+}
 @Component({
   selector: 'app-location-formulaire',
   templateUrl: './location-formulaire.component.html',
   styleUrls: ['./location-formulaire.component.scss']
 })
 export class LocationFormulaireComponent {
+  // L'ensemble des voitures et clients stocké dans la base
+  voitures: Voiture[] = [
+    {value: 0, viewValue: 'Mercedes'},
+    {value: 1, viewValue: 'Toyota'},
+    {value: 2, viewValue: 'Nissan'},
+  ];
+  clients: Client[]=[
+    {value: 1, viewValue:'Mohamed'},
+    {value: 2, viewValue:'Koureissi'},
+  ];
   constructor(public dialogRef:MatDialogRef<LocationFormulaireComponent>){}
   locationArr: any[]= [];
   location: any={

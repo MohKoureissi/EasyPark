@@ -1,13 +1,22 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-
+interface Food {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-vente-formulaire',
   templateUrl: './vente-formulaire.component.html',
   styleUrls: ['./vente-formulaire.component.scss']
 })
 export class VenteFormulaireComponent {
+  
+  foods: Food[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'},
+  ];
   constructor(public dialogRef: MatDialogRef<VenteFormulaireComponent>){}
   venteArr: any[]= [];
   vente:any={

@@ -40,7 +40,7 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, voiture: 'Toyota CHR', prix: 20000, date: '2023-10-12', description:'Ma première Maintenance'},
+  {id: 1, voiture: 'Toyota CHR', prix: 20000, date: '2023-10-12', description:'Ma première Maintenance Ma première MaintenanceMa première MaintenanceMa première MaintenanceMa première Maintenance'},
   {id: 2, voiture: 'Toyota CHR', prix: 20000, date: '2023-10-12', description:'Ma première Maintenance'},
   {id: 3, voiture: 'Toyota CHR', prix: 20000, date: '2023-10-12', description:'Ma première Maintenance'},
   {id: 4, voiture: 'Toyota CHR', prix: 20000, date: '2023-10-12', description:'Ma première Maintenance'},

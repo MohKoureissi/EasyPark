@@ -1,6 +1,30 @@
-.btn-info {
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 80%;
+    display: flex;
+  }
+  .formLabel{
+   width: 10rem;
+  }
+  .formInput{
+    margin-left: 5%;
+  }
+  .boutton{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .btn-info {
     color: #ffffff;
     background-color: #308D89;
     border-color: #00bcd4;
     box-shadow: none;
+}
+.boutton{
+  margin-top: 10px;
 }
