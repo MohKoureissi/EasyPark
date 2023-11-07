@@ -13,7 +13,7 @@
       <div class="formInput">
         <mat-form-field style="height: 65px; width: 85%;">
           <mat-select>
-            <mat-option *ngFor="let voiture of voitures" [value]="voiture.value">
+            <mat-option [(ngModel)]="location.voiture"  *ngFor="let voiture of voitures" [value]="voiture.value">
               {{voiture.viewValue}}
             </mat-option>
           </mat-select>
@@ -27,7 +27,7 @@
       <div class="formInput">
         <mat-form-field style="height: 65px;  width: 85%;">
           <mat-select>
-            <mat-option *ngFor="let client of clients" [value]="client.value">
+            <mat-option  [(ngModel)]="location.client"  *ngFor="let client of clients" [value]="client.value">
               {{client.viewValue}}
             </mat-option>
           </mat-select>
@@ -40,7 +40,7 @@
           style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Durée :</label></div>
       <div>
         <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-          <input matInput placeholder="Ex. 8h" >
+          <input matInput [(ngModel)]="location.duree" placeholder="Ex. 8h" >
         </mat-form-field>
       </div>
       <!-- <div class="formInput"> <input [(ngModel)]="location.duree" style="margin-left: -39%;" class="form-control" type="text"  aria-label="default input example" ></div> -->

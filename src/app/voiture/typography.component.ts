@@ -20,7 +20,7 @@ export class TypographyComponent  {
    voitureArr: any[]= [];
    voiture: any={
      id: 0,
-     nom:'',
+     marque:'',
      modele:'',
      anneeSortie:'',
      photo1:'',
@@ -46,7 +46,7 @@ export class TypographyComponent  {
     // localStorage.setItem('voiture',JSON.stringify(this.voitureArr));
     this.voiture= {
       id : 0,
-      nom:'',
+      marque:'',
     modele:'',
     anneeSortie:'',
     photo1:'',

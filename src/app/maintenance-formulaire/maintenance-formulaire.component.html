@@ -35,7 +35,7 @@
           <div class="formInput">
             <mat-form-field style="height: 65px; width: 85%;">
               <mat-select>
-                <mat-option *ngFor="let voiture of voitures" [value]="voiture.value">
+                <mat-option [(ngModel)]="maintenance.voiture" *ngFor="let voiture of voitures" [value]="voiture.value">
                   {{voiture.viewValue}}
                 </mat-option>
               </mat-select>
@@ -49,7 +49,7 @@
               style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Prix :</label></div>
           <div>
             <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-              <input matInput placeholder="Ex. 8 0000000" >
+              <input matInput [(ngModel)]="maintenance.prix" placeholder="Ex. 8 0000000" >
             </mat-form-field>
           </div>
           <!-- <div class="formInput"> <input [(ngModel)]="location.duree" style="margin-left: -39%;" class="form-control" type="text"  aria-label="default input example" ></div> -->
@@ -60,7 +60,7 @@
               style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Description :</label></div>
           <div>
             <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-              <textarea matInput placeholder="Ex.Ma premiere maintenance"></textarea>
+              <textarea matInput [(ngModel)]="maintenance.description" placeholder="Ex.Ma premiere maintenance"></textarea>
             </mat-form-field>
           </div>
           <!-- <div class="formInput"> <input [(ngModel)]="location.duree" style="margin-left: -39%;" class="form-control" type="text"  aria-label="default input example" ></div> -->

@@ -8,6 +8,7 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { LocationVoitureComponent } from 'app/location-voiture/location-voiture.component';
 import { VenteComponent } from 'app/vente/vente.component';
 import { MaintenanceComponent } from 'app/maintenance/maintenance.component';
+import { LoginPageComponent } from 'app/login-page/login-page.component';
 
 export const AdminLayoutRoutes: Routes = [
    
@@ -17,5 +18,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'typography',     component: TypographyComponent },
     { path: 'notifications',  component: NotificationsComponent },
     {path: 'location-voiture', component: LocationVoitureComponent},
-    {path: 'maintenance', component: MaintenanceComponent }
+    {path: 'maintenance', component: MaintenanceComponent },
+    {path: 'login-page', component: LoginPageComponent },
 ];

@@ -17,6 +17,7 @@ import { VenteComponent } from './vente/vente.component';
 import { VenteFormulaireComponent } from './vente-formulaire/vente-formulaire.component';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { MaintenanceFormulaireComponent } from './maintenance-formulaire/maintenance-formulaire.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
   imports: [

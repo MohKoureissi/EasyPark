@@ -14,7 +14,7 @@ export class VoitureFormulaireComponent {
   voitureArr: any[]= [];
   voiture: any={
     id: 0,
-    nom:'',
+    marque:'',
     modele:'',
     anneeSortie:'',
     photo1:'',
@@ -40,7 +40,7 @@ export class VoitureFormulaireComponent {
     // localStorage.setItem('projet',JSON.stringify(this.voitureArr));
     this.voiture= {
       id : 0,
-      nom:'',
+      marque:'',
     modele:'',
     anneeSortie:'',
     photo1:'',
@@ -63,7 +63,7 @@ update() {
 
   if (recordIndex !== -1) {
     // Mettez à jour la propriété 'nom' de l'élément trouvé
-    this.voitureArr[recordIndex].nom = this.voiture.nom;
+    this.voitureArr[recordIndex].nom = this.voiture.marque;
 
     // Réinitialisez le modèle de formulaire après la mise à jour
     this.voiture = {};

@@ -1,4 +1,4 @@
-<fieldset style="border-radius: 20px;">
+<fieldset style="border-radius: 20px; overflow-y: auto; max-height: 80vh;" >
     <div class="image" style="align-items: center; justify-content: center;display: flex;">
       <img src="../../assets/img/location.jpg" width="172px" height="156px" alt="image non disponible">
     </div>
@@ -9,7 +9,7 @@
          <div  class="formInput"> 
           <mat-form-field  style="height: 65px;">
              <mat-select>
-              <mat-option *ngFor="let food of foods" [value]="food.value">
+              <mat-option [(ngModel)]="vente.voiture" *ngFor="let food of foods" [value]="food.value">
               {{food.viewValue}}
               </mat-option>
           </mat-select>  
@@ -22,7 +22,7 @@
          <div  class="formInput"> 
           <mat-form-field  style="height: 65px;">
              <mat-select>
-              <mat-option *ngFor="let food of foods" [value]="food.value">
+              <mat-option [(ngModel)]="vente.client" *ngFor="let food of foods" [value]="food.value">
               {{food.viewValue}}
               </mat-option>
           </mat-select>  
