@@ -18,6 +18,7 @@ import { VenteFormulaireComponent } from './vente-formulaire/vente-formulaire.co
 import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { MaintenanceFormulaireComponent } from './maintenance-formulaire/maintenance-formulaire.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { SuperAdminComponent } from './super-admin/super-admin.component';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    SuperAdminComponent,
    
     
   ],
