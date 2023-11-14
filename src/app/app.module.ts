@@ -19,6 +19,12 @@ import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { MaintenanceFormulaireComponent } from './maintenance-formulaire/maintenance-formulaire.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SuperAdminComponent } from './super-layout/super-admin/super-admin.component';
+import { DashboardSuperAdminComponent } from './dashboard-super-admin/dashboard-super-admin.component';
+import { ParkingActifComponent } from './parking-actif/parking-actif.component';
+import { ParkingInactifComponent } from './parking-inactif/parking-inactif.component';
+import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
+import { ActifFormulaireComponent } from './actif-formulaire/actif-formulaire.component';
+import { SuspendreFormulaireComponent } from './suspendre-formulaire/suspendre-formulaire.component';
 
 @NgModule({
   imports: [
@@ -39,7 +45,9 @@ import { SuperAdminComponent } from './super-layout/super-admin/super-admin.comp
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    SuperAdminComponent
+    SuperAdminComponent,
+    ActifFormulaireComponent,
+    SuspendreFormulaireComponent,
    
     
   ],

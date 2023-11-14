@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class Navbar2Component implements OnInit {
 
-  private listTitles2: { path: string, title: string }[];
+  private listTitles: { path: string, title: string }[];
   location: Location;
     mobile_menu_visible: any = 0;
   private toggleButton: any;
@@ -23,9 +23,9 @@ export class Navbar2Component implements OnInit {
   }
 
   ngOnInit(){
-    this.listTitles2 = ROUTES.filter(listTitle => listTitle);
+    this.listTitles = ROUTES.filter(listTitle => listTitle);
     const navbar2: HTMLElement = this.element.nativeElement;
-    this.toggleButton = navbar2.getElementsByClassName('navbar2-toggler')[0];
+    this.toggleButton = navbar2.getElementsByClassName('navbar-toggler')[0];
     this.router.events.subscribe((event) => {
       this.sidebar2Close();
        var $layer: any = document.getElementsByClassName('close-layer')[0];
@@ -48,15 +48,21 @@ export class Navbar2Component implements OnInit {
       this.sidebar2Visible = true;
   };
   sidebar2Close() {
-      const body = document.getElementsByTagName('body')[0];
-      this.toggleButton.classList.remove('toggled');
-      this.sidebar2Visible = false;
-      body.classList.remove('nav-open');
+    //   const body = document.getElementsByTagName('body')[0];
+    //   this.toggleButton.classList.remove('toggled');
+    //   this.sidebar2Visible = false;
+    //   body.classList.remove('nav-open');
+    const body = document.getElementsByTagName('body')[0];
+    if (this.toggleButton) {
+        this.toggleButton.classList.remove('toggled');
+    }
+    this.sidebar2Visible = false;
+    body.classList.remove('nav-open');
   };
   sidebar2Toggle() {
       // const toggleButton = this.toggleButton;
       // const body = document.getElementsByTagName('body')[0];
-      var $toggle = document.getElementsByClassName('navbar2-toggler')[0];
+      var $toggle = document.getElementsByClassName('navbar-toggler')[0];
 
       if (this.sidebar2Visible === false) {
           this.sidebar2Open();
@@ -117,12 +123,12 @@ export class Navbar2Component implements OnInit {
         titlee = titlee.slice( 1 );
     }
 
-    for(var item = 0; item < this.listTitles2.length; item++){
-        if(this.listTitles2[item].path === titlee){
-            return this.listTitles2[item].title;
+    for(var item = 0; item < this.listTitles.length; item++){
+        if(this.listTitles[item].path === titlee){
+            return this.listTitles[item].title;
         }
     }
-    return 'Dashboard';
+    return 'Dashboard SuperAdmin';
   }
 
 }

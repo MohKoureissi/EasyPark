@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SuperAdminComponent } from './super-layout/super-admin/super-admin.component';
+import { DashboardSuperAdminComponent } from './dashboard-super-admin/dashboard-super-admin.component';
 
 const routes: Routes =[
   {
@@ -22,6 +23,8 @@ const routes: Routes =[
       loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
     }]
   },
+  
+  {path: 'dashboard-super-admin', component: DashboardSuperAdminComponent},
    {
     path: 'super',
     component: SuperAdminComponent,
