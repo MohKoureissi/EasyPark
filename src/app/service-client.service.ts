@@ -14,8 +14,8 @@ export class ServiceClientService {
     return this.http.post(`${this.apiUrl}/create`, client);
   }
 
-  getAllClients(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/read`);
+  getAllClients(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/read`);
   }
 
   getClientById(id: number): Observable<any> {

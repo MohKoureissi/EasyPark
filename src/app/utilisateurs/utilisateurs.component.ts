@@ -1,6 +1,10 @@
 import {AfterViewInit, Component,OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { ClientModel} from '../../app/model/clientModel';
+import {MatSort, MatSortModule} from '@angular/material/sort';
+import { ServiceClientService } from 'app/service-client.service';
+
 @Component({
   selector: 'app-utilisateurs',
   templateUrl: './utilisateurs.component.html',
@@ -9,26 +13,48 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
   imports: [MatTableModule, MatPaginatorModule],
 })
 export class UtilisateursComponent {
-  displayedColumns: string[] = ['id', 'nom', 'prenom', 'email','telephone'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  ngAfterViewInit() {  
-    this.dataSource.paginator = this.paginator;
+  displayedColumns: string[] = ['nom', 'prenom', 'adresse', 'email'];  
+  dataSource = new MatTableDataSource<ClientModel>();
+  users: ClientModel[] = [];
+ 
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
+    @ViewChild(MatSort ) sort!: MatSort;
+  constructor(private serviceCient: ServiceClientService) {
+    
+   
+    this.dataSource = new MatTableDataSource(this.users);
   }
 
+  ngOnInit(): void {
+    this.serviceCient.getAllClients().subscribe(user => {
+      this.users = user;
+      this.dataSource = new MatTableDataSource(this.users);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
 
-}
-export interface PeriodicElement {
-  nom: string;
-  id: number;
-  prenom: string;
-  email: string;
-  telephone:string;
-}
+  // onDelete(id:number){
+  //  this.serviceCient.(id).subscribe({
+  //   next: res => {
+      
+  //     console.log('Utilisateur supprimé avec succès.', res);
+  //     this.users = this.users.filter(user => user.idUtilisateur !== id);
+  //   },
+  //   error: err => {
+      
+  //     console.error('Une erreur est survenue lors de la suppression de l\'utilisateur.', err);
+  //   }
+  // });
+ 
+  
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, nom: 'Koureissi', prenom:'Mohamed', email: 'koureissi89@gmail.com', telephone:'ACI 2000'},
-];
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+}
 
