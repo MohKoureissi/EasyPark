@@ -3,14 +3,14 @@
       <img src="../../assets/img/iconPark2-removebg-preview.png" width="159px" height="156px" alt="image non disponible">
     </div>
     <h3 style="text-align: center; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-weight: bold;">Ajouter Voiture</h3>
-    <form class="example-form" (submit)="saveVoiture(pro)" action="typography.component.html" method="post" #pro="ngForm">
+    <form class="example-form"  [formGroup]="voitureForm" (ngSubmit)="createVoiture()" enctype="multipart/form-data">
      <!-- Marque -->
       <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
         <div class="formLabel"> <label
             style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Marque :</label></div>
         <div>
           <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-            <input matInput [(ngModel)]="voiture.marque" placeholder="Ex. Mercedes" >
+            <input matInput formControlName="marque" placeholder="Ex. Mercedes" >
           </mat-form-field>
         </div>
       </div> 
@@ -20,7 +20,7 @@
             style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Modèle :</label></div>
         <div>
           <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-            <input matInput [(ngModel)]="voiture.modele" placeholder="Ex.AMG 600" >
+            <input matInput formControlName="modele" placeholder="Ex.AMG 600" >
           </mat-form-field>
         </div>
       </div> 
@@ -30,32 +30,28 @@
             style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Année Sortie :</label></div>
         <div>
           <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-            <input matInput [(ngModel)]="voiture.anneeSortie" placeholder="Ex. 2023" >
+            <input matInput  formControlName="anneeSortie" placeholder="Ex. 2023" >
           </mat-form-field>
         </div>
        </div>
-        <!-- Photo1 -->  
-        <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-         <div class="formLabel"> <label  style=" margin-left: 20px;font-size: large; font-weight: bold; color: #308D89;">Photo 1:</label></div>
-         <div class="formInput"> <input [(ngModel)]="voiture.photo1" style="margin-left: 5%;" class="form-control" type="file"  aria-label="default input example" ></div>
-        </div> 
+      
         <!-- Photo2 -->
         <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
          <div class="formLabel"> <label  style=" margin-left: 20px;font-size: large; font-weight: bold; color: #308D89;">Photo 2:</label></div>
-         <div class="formInput"> <input [(ngModel)]="voiture.photo2" style="margin-left: 5%;" class="form-control" type="file"  aria-label="default input example" ></div>
+         <div class="formInput"> <input  style="margin-left: 5%;" class="form-control" type="file" formControlName="photo2"  (change)="photos2Change($event)" accept="image/*" aria-label="default input example" ></div>
         </div> 
         <!-- Photo3 -->
         <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
          <div class="formLabel"> <label  style=" margin-left: 20px;font-size: large; font-weight: bold; color: #308D89;">Photo 3:</label></div>
-         <div class="formInput"> <input [(ngModel)]="voiture.photo3" style="margin-left: 5%;" class="form-control" type="file"  aria-label="default input example" ></div>
+         <div class="formInput"> <input  style="margin-left: 5%;" class="form-control" type="file" formControlName="photo3"  (change)="photos3Change($event)" accept="image/*" aria-label="default input example" ></div>
         </div> 
         <!-- Photo4 -->
         <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
          <div class="formLabel"> <label  style=" margin-left: 20px;font-size: large; font-weight: bold; color: #308D89;">Photo 4:</label></div>
-         <div class="formInput"> <input [(ngModel)]="voiture.photo4" style="margin-left: 5%;" class="form-control" type="file"  aria-label="default input example" ></div>
+         <div class="formInput"> <input  style="margin-left: 5%;" class="form-control" type="file" formControlName="photo4"  (change)="photos4Change($event)" accept="image/*"  aria-label="default input example" ></div>
         </div> 
         <!-- Transmission -->
-        <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
+        <!-- <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
           <div class="formLabel"> <label
               style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Boite de Vitesse :</label></div>
           <div>
@@ -63,14 +59,14 @@
               <input matInput [(ngModel)]="voiture.transmission" placeholder="Ex. Manuel" >
             </mat-form-field>
           </div>
-         </div>
+         </div> -->
          <!-- Quantité -->
         <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
           <div class="formLabel"> <label
               style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Quantité :</label></div>
           <div>
             <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-              <input matInput [(ngModel)]="voiture.quantite" placeholder="Ex. 110" >
+              <input matInput  formControlName="quantite" placeholder="Ex. 110" >
             </mat-form-field>
           </div>
          </div>
@@ -80,7 +76,7 @@
               style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Type :</label></div>
           <div>
             <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-              <input matInput [(ngModel)]="voiture.type" placeholder="Ex. 110" >
+              <input matInput formControlName="type" placeholder="Ex. 110" >
             </mat-form-field>
           </div>
          </div>
@@ -90,7 +86,7 @@
             style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Prix :</label></div>
         <div>
           <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-            <input matInput [(ngModel)]="voiture.prix" placeholder="Ex. Location" >
+            <input matInput formControlName="prix" placeholder="Ex. Location" >
           </mat-form-field>
         </div>
       </div> 
@@ -99,8 +95,8 @@
           <button type="button"style="margin-right:15px;border-radius: 10px;font-size: 15px;" (click)="onNoClick()" class="btn btn-danger">Annuler</button>
           </div>
           <div>
-          <button type="button" style="margin-left: 30px;border-radius: 10px;font-size: 15px;" [hidden]="voiture.id != 0" type="button" (click)="saveVoiture(pro)" (click)="onNoClick()"  class="btn btn-info">Enregistrer</button>
-          <button type="button" style="margin-left: 30px;border-radius: 10px;font-size: 15px;" [hidden]="voiture.id == 0" type="button" (click)="update()"  class="btn btn-info">Modifier</button>
+          <button type="button" style="margin-left: 30px;border-radius: 10px;font-size: 15px;"  class="btn btn-info" >Enregistrer</button>
+          <!-- <button type="button" style="margin-left: 30px;border-radius: 10px;font-size: 15px;" [hidden]="voiture.id == 0" type="button" (click)="update()"  class="btn btn-info">Modifier</button> -->
           </div>
         </div>
     </form>

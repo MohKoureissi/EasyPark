@@ -12,56 +12,35 @@ import { VoitureFormulaireComponent } from 'app/voiture-formulaire/voiture-formu
 export class TypographyComponent  {
 
   constructor(private matDialog: MatDialog) {}
+
+
     openDialog() {
-      this.matDialog.open(VoitureFormulaireComponent, {
-        width: '500px',
+     const dialog = this.matDialog.open(VoitureFormulaireComponent, {
+        width: '600px',
       })
    }
-   voitureArr: any[]= [];
-   voiture: any={
-     id: 0,
-     marque:'',
-     modele:'',
-     anneeSortie:'',
-     photo1:'',
-     photo2:'',
-     photo3:'',
-     photo4:'',
-     transmission:'',
-     quantite:'',
-     type:'',
-     prix:''
-   }
-   ngOnInit(): void {
-    const text : string| any=localStorage.getItem('voiture');
-    if(text != null){
-      this.voitureArr= JSON.parse(text);
-    }
+  //  voitureArr: any[]= [];
+  //  voiture: any={
+  //    id: 0,
+  //    marque:'',
+  //    modele:'',
+  //    anneeSortie:'',
+  //    photo1:'',
+  //    photo2:'',
+  //    photo3:'',
+  //    photo4:'',
+  //    transmission:'',
+  //    quantite:'',
+  //    type:'',
+  //    prix:''
+  //  }
+  //  ngOnInit(): void {
+  //   const text : string| any=localStorage.getItem('voiture');
+  //   if(text != null){
+  //     this.voitureArr= JSON.parse(text);
+  //   }
+  // }
   }
-  saveVoiture(foms :NgForm){
-    // debugger
-    // this.projetArr.push(this.projet);
-    this.voiture.id = this.voitureArr.length +1;
-    this.voitureArr.push(this.voiture);
-    // localStorage.setItem('voiture',JSON.stringify(this.voitureArr));
-    this.voiture= {
-      id : 0,
-      marque:'',
-    modele:'',
-    anneeSortie:'',
-    photo1:'',
-    photo2:'',
-    photo3:'',
-    photo4:'',
-    transmission:'',
-    quantite:'',
-    type:'',
-    prix:''
-  }
-}
- 
-  
-  };
 
 
 

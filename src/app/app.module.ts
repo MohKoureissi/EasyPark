@@ -22,7 +22,6 @@ import { SuperAdminComponent } from './super-layout/super-admin/super-admin.comp
 import { DashboardSuperAdminComponent } from './dashboard-super-admin/dashboard-super-admin.component';
 import { ParkingActifComponent } from './parking-actif/parking-actif.component';
 import { ParkingInactifComponent } from './parking-inactif/parking-inactif.component';
-import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
 import { ActifFormulaireComponent } from './actif-formulaire/actif-formulaire.component';
 import { SuspendreFormulaireComponent } from './suspendre-formulaire/suspendre-formulaire.component';
 
@@ -40,9 +39,11 @@ import { SuspendreFormulaireComponent } from './suspendre-formulaire/suspendre-f
     AppRoutingModule, 
     MatTableModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   declarations: [
+    
     AppComponent,
     AdminLayoutComponent,
     SuperAdminComponent,
