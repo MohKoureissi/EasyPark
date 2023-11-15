@@ -2,101 +2,67 @@
     <div class="image" style="align-items: center; justify-content: center;display: flex;">
       <img src="../../assets/img/iconPark2-removebg-preview.png" width="159px" height="156px" alt="image non disponible">
     </div>
-    <h3 style="text-align: center; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-weight: bold;">Ajouter Voiture</h3>
+    <h3 style=" margin-top: -1.5%; text-align: center; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-weight: bold;">Ajouter Voiture</h3>
+
+
     <form class="example-form"  [formGroup]="voitureForm" (ngSubmit)="createVoiture()" enctype="multipart/form-data">
-     <!-- Marque -->
-      <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-        <div class="formLabel"> <label
-            style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Marque :</label></div>
-        <div>
-          <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-            <input matInput formControlName="marque" placeholder="Ex. Mercedes" >
-          </mat-form-field>
-        </div>
-      </div> 
-      <!-- Modèle -->
-      <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-        <div class="formLabel"> <label
-            style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Modèle :</label></div>
-        <div>
-          <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-            <input matInput formControlName="modele" placeholder="Ex.AMG 600" >
-          </mat-form-field>
-        </div>
-      </div> 
-      <!-- Année Sortie -->
-      <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-        <div class="formLabel"> <label
-            style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Année Sortie :</label></div>
-        <div>
-          <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-            <input matInput  formControlName="anneeSortie" placeholder="Ex. 2023" >
-          </mat-form-field>
-        </div>
+     <!-- 1éer Ligne -->
+     <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+     <div class="input-group flex-nowrap">
+      <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Marque</span>
+      <input type="text"  formControlName="marque" class="form-control" placeholder="Ex: Mercedes" aria-label="Username" aria-describedby="addon-wrapping">
+    </div>
+     <div class="input-group flex-nowrap">
+      <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Modèle</span>
+      <input type="text"  formControlName="modele" class="form-control" placeholder="Ex: AMG" aria-label="Username" aria-describedby="addon-wrapping">
+    </div>
+  </div>
+      <!-- 2eme Ligne -->
+      <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;  margin-bottom: 15px;">
+        <div class="input-group flex-nowrap">
+         <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Année Sortie</span>
+         <input type="text"  formControlName="anneeSortie" class="form-control" placeholder="Ex: 2023" aria-label="Username" aria-describedby="addon-wrapping">
        </div>
-      
-        <!-- Photo2 -->
-        <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-         <div class="formLabel"> <label  style=" margin-left: 20px;font-size: large; font-weight: bold; color: #308D89;">Photo 2:</label></div>
-         <div class="formInput"> <input  style="margin-left: 5%;" class="form-control" type="file" formControlName="photo2"  (change)="photos2Change($event)" accept="image/*" aria-label="default input example" ></div>
-        </div> 
-        <!-- Photo3 -->
-        <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-         <div class="formLabel"> <label  style=" margin-left: 20px;font-size: large; font-weight: bold; color: #308D89;">Photo 3:</label></div>
-         <div class="formInput"> <input  style="margin-left: 5%;" class="form-control" type="file" formControlName="photo3"  (change)="photos3Change($event)" accept="image/*" aria-label="default input example" ></div>
-        </div> 
-        <!-- Photo4 -->
-        <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-         <div class="formLabel"> <label  style=" margin-left: 20px;font-size: large; font-weight: bold; color: #308D89;">Photo 4:</label></div>
-         <div class="formInput"> <input  style="margin-left: 5%;" class="form-control" type="file" formControlName="photo4"  (change)="photos4Change($event)" accept="image/*"  aria-label="default input example" ></div>
-        </div> 
-        <!-- Transmission -->
-        <!-- <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-          <div class="formLabel"> <label
-              style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Boite de Vitesse :</label></div>
-          <div>
-            <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-              <input matInput [(ngModel)]="voiture.transmission" placeholder="Ex. Manuel" >
-            </mat-form-field>
+        <div class="input-group flex-nowrap">
+         <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Photo1</span>
+         <input type="file"  formControlName="photo2" (change)="photos2Change($event)" accept="image/*" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
+       </div>
+     </div>
+        <!-- 3eme Ligne -->
+        <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;  margin-bottom: 15px;">
+          <div class="input-group flex-nowrap">
+            <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Prix</span>
+            <input type="text"  formControlName="prix" class="form-control" placeholder="Ex: 25 000000" aria-label="Username" aria-describedby="addon-wrapping">
           </div>
-         </div> -->
-         <!-- Quantité -->
-        <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-          <div class="formLabel"> <label
-              style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Quantité :</label></div>
-          <div>
-            <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-              <input matInput  formControlName="quantite" placeholder="Ex. 110" >
-            </mat-form-field>
-          </div>
+          <div class="input-group flex-nowrap">
+           <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Photo3</span>
+           <input type="file"  formControlName="photo4" (change)="photos4Change($event)" accept="image/*" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
          </div>
-         <!-- Type -->
-        <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-          <div class="formLabel"> <label
-              style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Type :</label></div>
-          <div>
-            <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-              <input matInput formControlName="type" placeholder="Ex. 110" >
-            </mat-form-field>
-          </div>
+       </div>
+       <!-- 4eme Ligne -->
+       <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+        <div class="input-group flex-nowrap">
+         <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Quantité</span>
+         <input type="text"  formControlName="quantite" class="form-control" placeholder="Ex: 15" aria-label="Username" aria-describedby="addon-wrapping">
+       </div>
+       <div class="input-group flex-nowrap">
+        <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Photo2</span>
+        <input type="file"  formControlName="photo3"  (change)="photos3Change($event)" accept="image/*" class="form-control"  aria-label="Username" aria-describedby="addon-wrapping">
+      </div>
+     </div>
+         <!-- 5eme Ligne -->
+         <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+          <div class="input-group flex-nowrap">
+           <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Type</span>
+           <input type="text"  formControlName="type" class="form-control" placeholder="Ex: Location" aria-label="Username" aria-describedby="addon-wrapping">
          </div>
-          <!-- Prix -->
-      <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-        <div class="formLabel"> <label
-            style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Prix :</label></div>
-        <div>
-          <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-            <input matInput formControlName="prix" placeholder="Ex. Location" >
-          </mat-form-field>
-        </div>
-      </div> 
+       </div>
         <div class="boutton">
           <div>
           <button type="button"style="margin-right:15px;border-radius: 10px;font-size: 15px;" (click)="onNoClick()" class="btn btn-danger">Annuler</button>
           </div>
           <div>
           <button type="button" style="margin-left: 30px;border-radius: 10px;font-size: 15px;"  class="btn btn-info" >Enregistrer</button>
-          <!-- <button type="button" style="margin-left: 30px;border-radius: 10px;font-size: 15px;" [hidden]="voiture.id == 0" type="button" (click)="update()"  class="btn btn-info">Modifier</button> -->
           </div>
         </div>
     </form>

@@ -26,7 +26,7 @@ export class VenteComponent implements OnInit, AfterViewInit {
   }
     openDialog() {
       this.matDialog.open(VenteFormulaireComponent, {
-        width: '500px',
+        width: '450px',
       })
    }
 

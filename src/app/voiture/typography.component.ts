@@ -16,7 +16,7 @@ export class TypographyComponent  {
 
     openDialog() {
      const dialog = this.matDialog.open(VoitureFormulaireComponent, {
-        width: '600px',
+        width: '520px',
       })
    }
   //  voitureArr: any[]= [];

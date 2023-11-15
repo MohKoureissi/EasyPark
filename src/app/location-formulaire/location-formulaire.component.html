@@ -5,50 +5,33 @@
   <h3
     style="text-align: center; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-weight: bold;">
     Nouvelle Location</h3>
-  <form class="example-form" (submit)="saveLocation(pro)" action="Location-voiture.component.html" method="post"
-    #pro="ngForm">
-    <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-      <div class="formLabel"> <label style=" margin-left: 20px;font-size: large; font-weight: bold; color: #308D89;">ID
-          Voiture:</label></div>
-      <div class="formInput">
-        <mat-form-field style="height: 65px; width: 85%;">
-          <mat-select>
-            <mat-option [(ngModel)]="location.voiture"  *ngFor="let voiture of voitures" [value]="voiture.value">
-              {{voiture.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <!-- <div class="formInput"> <input [(ngModel)]="location.voiture" style="margin-left: 5%;" class="form-control" type="text" placeholder="Mercedes" aria-label="default input example" ></div> -->
+  <form class="example-form" >
+    <div class="input-group mb-3" style="    align-items: center; justify-content: center;">
+      <label class="input-group-text" style="margin-left: -22px; font-size: large; font-weight: bold; color: #308D89" for="inputGroupSelect01">Voiture</label>
+      <select class="form-select" formControlName="idVoiture" id="inputGroupSelect01" style="width: 180px;height: 40px;margin-left: 40px;">
+        <option selected>Choisir...</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
     </div>
-    <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-      <div class="formLabel"> <label style=" margin-left: 20px;font-size: large; font-weight: bold; color: #308D89;">ID
-          Client:</label></div>
-      <div class="formInput">
-        <mat-form-field style="height: 65px;  width: 85%;">
-          <mat-select>
-            <mat-option  [(ngModel)]="location.client"  *ngFor="let client of clients" [value]="client.value">
-              {{client.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <!-- <div class="formInput"> <input [(ngModel)]="location.client" style="margin-left: 5%;" class="form-control" type="text" placeholder="Moussa" aria-label="default input example" ></div> -->
+    <div class="input-group mb-3" style="    align-items: center; justify-content: center;">
+      <label class="input-group-text" style="margin-left: -22px; font-size: large; font-weight: bold; color: #308D89" for="inputGroupSelect01"> Client</label>
+      <select class="form-select" formControlName="idClient" id="inputGroupSelect01" style="width: 180px;height: 40px;margin-left: 50px;">
+        <option selected>client1...</option>
+        <option value="1">Onee</option>
+        <option value="2">Twoo</option>
+        <option value="3">Three</option>
+      </select>
     </div>
-    <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-      <div class="formLabel"> <label
-          style=" margin-left: 18px;font-size: large; font-weight: bold; color: #308D89;">Durée :</label></div>
-      <div>
-        <mat-form-field class="example-full-width" style="height: 65px; margin-left: 20px;">
-          <input matInput [(ngModel)]="location.duree" placeholder="Ex. 8h" >
-        </mat-form-field>
-      </div>
-      <!-- <div class="formInput"> <input [(ngModel)]="location.duree" style="margin-left: -39%;" class="form-control" type="text"  aria-label="default input example" ></div> -->
+    <div class="input-group flex-nowrap" style="width: 70%;margin-left: 60px;">
+      <span style="color: #308D89; margin-left: 20px;font-size: large; font-weight: bold; color: #6fb3af;" class="input-group-text" id="addon-wrapping">Durée</span>
+      <input type="text" style="margin-left: 45px;" formControlName="duree" class="form-control" placeholder="Ex: 15h" aria-label="Username" aria-describedby="addon-wrapping">
     </div>
     <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
       <div class="formLabel"> <label style=" margin-left: 2px;font-size: large; font-weight: bold; color: #6fb3af;">Date
           :</label></div>
-      <div class="formInput"> <input [(ngModel)]="location.date" style="margin-left: -7%;" class="form-control"
+      <div class="formInput"> <input formControlName="date" style="margin-left: -7%;" class="form-control"
           type="date" aria-label="default input example"></div>
     </div>
     <div class="boutton">
@@ -57,10 +40,7 @@
           class="btn btn-danger">Annuler</button>
       </div>
       <div>
-        <button type="button" style="margin-left: 30px;border-radius: 10px;font-size: 15px;" [hidden]="location.id != 0"
-          type="button" (click)="saveLocation(pro)" (click)="onNoClick()" class="btn btn-info">Enregistrer</button>
-        <button type="button" style="margin-left: 30px;border-radius: 10px;font-size: 15px;" [hidden]="location.id == 0"
-          type="button" (click)="update()" class="btn btn-info">Modifier</button>
+        <button type="button" style="margin-left: 30px;border-radius: 10px;font-size: 15px;" type="button"  class="btn btn-info">Enregistrer</button>
       </div>
     </div>
   </form>
