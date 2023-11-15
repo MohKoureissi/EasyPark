@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -24,7 +25,17 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems: any[];
 
-  constructor() { }
+  isLoginPage: boolean = false;
+  isBlankPage : boolean = false;
+
+  constructor(private router: Router){
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.isBlankPage = event.url === '/';
+        this.isLoginPage = event.url.endsWith('login-page') || event.url === '/login';
+      }
+    });
+  }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);

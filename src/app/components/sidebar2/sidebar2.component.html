@@ -1,7 +1,7 @@
-<div class="logo" style=" height: 140px;">
+<div class="logo" style=" height: 140px;"  >
     <img src="/assets/img/mon-logo.png" style="margin-left: 16px;margin-top: 10px; align-items: center;" width="90%"/>
 </div>
-<div class="sidebar-wrapper">
+<div class="sidebar-wrapper"   *ngIf="!isLoginPage">
 <div *ngIf="isMobileMenu()">
 <!-- <form class="navbar-form">
 <span class="bmd-form-group">
