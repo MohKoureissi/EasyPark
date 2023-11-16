@@ -29,7 +29,7 @@ export class VoitureFormulaireComponent {
       this.adminRecup = this.authService.getAdminConnecte();
       console.log("Admin recup dans guide ", this.adminRecup);
 
-    this.voiture.form = this.fb.group({
+    this.voitureForm = this.fb.group({
       marque:['', Validators.required],
       modele:['', Validators.required],
       anneeSortie:['', Validators.required],
@@ -39,7 +39,7 @@ export class VoitureFormulaireComponent {
       quantite:['', Validators.required],
       type:['', Validators.required],
       prix:['', Validators.required],
-      admin: this.adminRecup
+      adminParking: this.adminRecup,
     })
   }
   voitureArr: any[]= [];
@@ -71,12 +71,16 @@ export class VoitureFormulaireComponent {
 
 
   onSubmit() {
-    if(this.voitureForm.valid){
+    console.log("test1");
+    if(this.voitureForm.valid &&  this.image && this.image2 && this.image3){
+      console.log("test2");
+      // if(this.data){
+        // console.log("test3");
 
     const newVoiture = this.voitureForm.value;
     console.log(newVoiture);
     this.serviceVoiture.createVoiture(newVoiture,this.image,this.image2,this.image3).subscribe(
-      (response :any) => {
+      (response) => {
         console.log('Voiture créée avec succès :', response);
         // Faites quelque chose avec la réponse ici
       },
@@ -86,6 +90,7 @@ export class VoitureFormulaireComponent {
       }
     );
   }
+ 
 }
 // //Modification
 //Fermeture du modal
