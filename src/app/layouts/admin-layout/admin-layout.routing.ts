@@ -16,5 +16,4 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'typography',     component: TypographyComponent },
     {path: 'location-voiture', component: LocationVoitureComponent},
     {path: 'maintenance', component: MaintenanceComponent },
-    {path: 'login-page', component: LoginPageComponent },
 ];

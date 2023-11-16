@@ -37,7 +37,6 @@ import { LoginPageComponent } from 'app/login-page/login-page.component';
     LocationFormulaireComponent,
     VenteFormulaireComponent,
     MaintenanceFormulaireComponent,
-    LoginPageComponent,
   ]
 })
 

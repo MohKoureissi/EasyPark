@@ -11,14 +11,20 @@ import { VoitureFormulaireComponent } from 'app/voiture-formulaire/voiture-formu
 })
 export class TypographyComponent  {
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private dialogRef: MatDialog) {}
 
+  openDialog(){
+    const dialog = this.dialogRef.open(VoitureFormulaireComponent, {
+      width:'520px',
+      height:'400px'
+    })
+  }
 
-    openDialog() {
-     const dialog = this.matDialog.open(VoitureFormulaireComponent, {
-        width: '520px',
-      })
-   }
+  //   openDialog() {
+  //    const dialog = this.matDialog.open(VoitureFormulaireComponent, {
+  //       width: '520px',
+  //     })
+  //  }
   //  voitureArr: any[]= [];
   //  voiture: any={
   //    id: 0,

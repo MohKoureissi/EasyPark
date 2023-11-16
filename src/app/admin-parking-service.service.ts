@@ -34,10 +34,10 @@ deleteAdminParking(id: number): Observable<string> {
   return this.http.delete<string>(`${this.baseUrl}/delete/${id}`);
 }
 
-loginAdmin(email: string, motDePasse: string): Observable<any> {
+loginAdmin(email: string, motdepasse: string): Observable<any> {
   const body = {
     email: email,
-    motDePasse: motDePasse,
+    motdepasse: motdepasse,
   };
 
   return this.http.post(`${this.baseUrl}/login`, body);

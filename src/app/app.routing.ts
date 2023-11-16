@@ -11,8 +11,11 @@ import { DashboardSuperAdminComponent } from './dashboard-super-admin/dashboard-
 const routes: Routes =[
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login-page',
     pathMatch: 'full',
+  },
+  {
+    path: 'login-page', component: LoginPageComponent
   },
  
    {

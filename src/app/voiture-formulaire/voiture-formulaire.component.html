@@ -1,60 +1,61 @@
-<fieldset style="border-radius: 20px;">
+<!-- <fieldset style="border-radius: 20px;"> 
     <div class="image" style="align-items: center; justify-content: center;display: flex;">
       <img src="../../assets/img/iconPark2-removebg-preview.png" width="159px" height="156px" alt="image non disponible">
     </div>
     <h3 style=" margin-top: -1.5%; text-align: center; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-weight: bold;">Ajouter Voiture</h3>
 
 
-    <form class="example-form"  [formGroup]="voitureForm" (ngSubmit)="createVoiture()" enctype="multipart/form-data">
-     <!-- 1éer Ligne -->
-     <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
-     <div class="input-group flex-nowrap">
-      <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Marque</span>
-      <input type="text"  formControlName="marque" class="form-control" placeholder="Ex: Mercedes" aria-label="Username" aria-describedby="addon-wrapping">
+    <form class="monforme"  [formGroup]="voitureForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+     <!-- 1éer Ligne 
+     <div  style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+     <div >
+      <span style="color: #308D89">Marque</span>
+      <input type="text"  formControlName="marque"  placeholder="Ex: Mercedes">
     </div>
-     <div class="input-group flex-nowrap">
-      <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Modèle</span>
-      <input type="text"  formControlName="modele" class="form-control" placeholder="Ex: AMG" aria-label="Username" aria-describedby="addon-wrapping">
+     <div>
+      <span style="color: #308D89">Modèle</span>
+      <input type="text"  formControlName="modele"  placeholder="Ex: AMG" >
     </div>
   </div>
-      <!-- 2eme Ligne -->
-      <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;  margin-bottom: 15px;">
-        <div class="input-group flex-nowrap">
-         <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Année Sortie</span>
-         <input type="text"  formControlName="anneeSortie" class="form-control" placeholder="Ex: 2023" aria-label="Username" aria-describedby="addon-wrapping">
+      <!-- 2eme Ligne
+       <div  style="display: flex; align-items: center; justify-content: center;  margin-bottom: 15px;">
+        <div >
+         <span style="color: #308D89" >Année Sortie</span>
+         <input type="text"  formControlName="anneeSortie"  placeholder="Ex: 2023" >
        </div>
-        <div class="input-group flex-nowrap">
-         <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Photo1</span>
-         <input type="file"  formControlName="photo2" (change)="photos2Change($event)" accept="image/*" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
+        <div >
+         <span style="color: #308D89">Photo1</span>
+     <input type="file" formControlName="photo2" multiple="multiple" accept="image/*" (change)="ImageChange($event)" required>
        </div>
      </div>
-        <!-- 3eme Ligne -->
-        <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;  margin-bottom: 15px;">
-          <div class="input-group flex-nowrap">
-            <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Prix</span>
-            <input type="text"  formControlName="prix" class="form-control" placeholder="Ex: 25 000000" aria-label="Username" aria-describedby="addon-wrapping">
+     <!-- <input type="file" class="form-control" formControlName="photo2" multiple="multiple" accept="image/*" (change)="ImageChange($event)" required> -->
+        <!-- 3eme Ligne 
+        <div style="display: flex; align-items: center; justify-content: center;  margin-bottom: 15px;">
+          <div >
+            <span style="color: #308D89" >Prix</span>
+            <input type="text"  formControlName="prix"  placeholder="Ex: 25 000000">
           </div>
-          <div class="input-group flex-nowrap">
-           <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Photo3</span>
-           <input type="file"  formControlName="photo4" (change)="photos4Change($event)" accept="image/*" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
-         </div>
+          <div >
+           <span style="color: #308D89" >Photo3</span>
+           <input type="file" formControlName="photo3" multiple="multiple" accept="image/*" (change)="ImageChange2($event)" required>
+          </div>
        </div>
-       <!-- 4eme Ligne -->
-       <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
-        <div class="input-group flex-nowrap">
-         <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Quantité</span>
-         <input type="text"  formControlName="quantite" class="form-control" placeholder="Ex: 15" aria-label="Username" aria-describedby="addon-wrapping">
+       <!-- 4eme Ligne 
+       <div  style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+        <div >
+         <span style="color: #308D89" >Quantité</span>
+         <input type="text"  formControlName="quantite"  placeholder="Ex: 15">
        </div>
-       <div class="input-group flex-nowrap">
-        <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Photo2</span>
-        <input type="file"  formControlName="photo3"  (change)="photos3Change($event)" accept="image/*" class="form-control"  aria-label="Username" aria-describedby="addon-wrapping">
+       <div >
+        <span style="color: #308D89" >Photo2</span>
+        <input type="file" formControlName="photo4" multiple="multiple" accept="image/*" (change)="ImageChange3($event)" required>
       </div>
      </div>
-         <!-- 5eme Ligne -->
-         <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
-          <div class="input-group flex-nowrap">
-           <span style="color: #308D89" class="input-group-text" id="addon-wrapping">Type</span>
-           <input type="text"  formControlName="type" class="form-control" placeholder="Ex: Location" aria-label="Username" aria-describedby="addon-wrapping">
+         <!-- 5eme Ligne 
+         <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+          <div >
+           <span style="color: #308D89" >Type</span>
+           <input type="text"  formControlName="type" class="form-control" placeholder="Ex: Location">
          </div>
        </div>
         <div class="boutton">
@@ -62,8 +63,85 @@
           <button type="button"style="margin-right:15px;border-radius: 10px;font-size: 15px;" (click)="onNoClick()" class="btn btn-danger">Annuler</button>
           </div>
           <div>
-          <button type="button" style="margin-left: 30px;border-radius: 10px;font-size: 15px;"  class="btn btn-info" >Enregistrer</button>
+            <button type="submit">Enregistrer</button>
+          <!-- <button type="button" style="margin-left: 30px;border-radius: 10px;font-size: 15px;"  class="btn btn-info" >Enregistrer</button> 
           </div>
         </div>
     </form>
-</fieldset>
+</fieldset>  -->
+
+<div class="image" style="align-items: center; justify-content: center;display: flex;">
+  <img src="../../assets/img/iconPark2-removebg-preview.png" width="159px" height="156px" alt="image non disponible">
+</div>
+<h3 style=" margin-top: -1.5%; text-align: center; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-weight: bold;">Ajouter Voiture</h3>
+<div class="formulare">
+  <form [formGroup]="voiture.form" (ngSubmit)="onSubmit()" enctype="multipart/form-data" >
+      <div class="form-container">
+        <!-- 1ere Ligne -->
+        <div class="input-container">
+          <div class="input-field">
+            <input type="text" id="marque" formControlName="marque" placeholder="Ex: Mercedes"  required >
+          </div>
+          <div class="nput-field">
+            <input type="text" id="modele" formControlName="modele" placeholder="Ex: AMG"  required >
+          </div>
+        </div>
+        <!-- 2eme Ligne -->
+        <div class="input-container">
+          <div class="input-field">
+            <input type="text" id="anneeSortie" formControlName="anneeSortie" placeholder="Ex: 2023"  required >
+          </div>
+
+          <div class="nput-field">
+            <input type="text" id="quantite" formControlName="quantite" placeholder="Ex: 25"  required >
+          </div>
+        </div>
+        <!-- 3eme Ligne -->
+        <div class="input-container">
+          <div class="input-field">
+            <input type="text" id="prix" formControlName="prix" placeholder="Ex: 45 000000"  required >
+          </div>
+          <div class="nput-field">
+            <input type="file" class="form-control" formControlName="photo4" multiple="multiple" accept="image/*" (change)="ImageChange($event)"  required>
+          </div>
+        </div>
+       
+           <!-- 4eme Ligne -->
+          <div class="input-container">
+            <div class="input-filed">
+              <input type="file" class="form-control" formControlName="photo2" multiple="multiple" accept="image/*" (change)="ImageChange2($event)"  required>
+            </div>
+            <div class="input-filed">
+              <input type="file" class="form-control" formControlName="photo3" multiple="multiple" accept="image/*" (change)="ImageChange3($event)" required>
+            </div>
+          </div>
+
+         
+
+        </div>
+      <!-- </div> -->
+      <div mat-dialog-actions class="actions">
+        <button mat-button mat-dialog-close><i class='bx bx-x'></i> Annuler</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!voiture.form.valid"> <i class='bx bx-check'></i>{{ data ? "Modifier" : "Ajouter" }}</button>
+      </div>
+    </form>
+</div>
+
+
+<!-- <div class="input-desc">
+  <select name="guideSelected" id="guideSelected" formControlName="guide">
+    <option value="" placeholder="Selectionner un guide">Sélectionnez un Guide</option>
+    <option *ngFor="let guide of guideSelected" [ngValue]="guide">{{ guide.libelle }}</option>
+ </select>
+</div> -->
+
+<!-- Pour aficher la photo lorsque l'on le selectionne -->
+        <!-- <div class="image-container"> -->
+          <!-- <div class="img">
+            <div *ngIf="imageSrc; else showEmptyContainer">
+                <img [src]="imageSrc" style="height: 180px; width: 180px" />
+            </div>
+            <ng-template #showEmptyContainer>
+                <div style="height: 180px; width: 180px;"></div>
+            </ng-template>
+          </div> -->

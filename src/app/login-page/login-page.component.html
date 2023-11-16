@@ -11,24 +11,16 @@
                             <div style="margin-top: 5%; justify-content: center; align-items: center;">
                                 <h2 style="text-align: center;">Connexion</h2>
                             </div>
-                            <div class="formulaire" style="justify-content: center; align-items: center; padding-left: 8%;">
-                                <form class="example-form" style="min-width: 150px; max-width: 500px;  width: 100%;">
-                                    <div>
-                                        <mat-form-field class="example-full-width" style="  width: 100%;">
-                                            <mat-label>Email</mat-label>
-                                            <input matInput type="email" >
-                                        </mat-form-field>
-                                    </div>
-                                    <div>
-                                        <mat-form-field class="example-full-width" style="  width: 100%;">
-                                            <mat-label>Mot de Passe</mat-label>
-                                            <input matInput type="password">
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="boutton" style="display: flex; justify-content: center; align-items: center;">
-                                        <button type="button"
-                                            style="margin-left: 0px;border-radius: 10px;font-size: 15px;" type="button"
-                                            class="btn btn-info">Se Connecter</button>
+                            <div class="formulaire" style="justify-content: center; align-items: center; padding-left: 8%;margin-top: -95px;">
+                                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"  style="min-width: 150px; max-width: 500px;  width: 100%;">
+                                    <div class="input-field">
+                                        <input type="text" id="email" formControlName="email" placeholder="Ex: park@gmail.com"  required >
+                                      </div>
+                                      <div class="nput-field">
+                                        <input type="password" id="motdepasse" formControlName="motdepasse" required >
+                                      </div>
+                                      <div class="btn">
+                                        <button  type="submit">Se connecter</button>
                                     </div>
                                 </form>
                             </div>

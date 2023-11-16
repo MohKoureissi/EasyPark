@@ -11,6 +11,5 @@ export interface Voiture {
     prix:          number;
     quantite:      number;
     type:          string;
-    disponibilite: boolean;
     adminParking:  AdminParking;
 }

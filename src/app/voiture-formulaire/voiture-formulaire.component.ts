@@ -1,28 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Inject} from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, NgForm} from '@angular/forms';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import { ServiceVoitureService } from 'app/service-voiture.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-voiture-formulaire',
   templateUrl: './voiture-formulaire.component.html',
   styleUrls: ['./voiture-formulaire.component.scss']
 })
-export class VoitureFormulaireComponent implements OnInit {
+export class VoitureFormulaireComponent {
 
-  photos2!:File;
-  photos3!:File;
-  photos4!:File;
+ 
   voitureForm!:FormGroup;
+  image!: File;
+  image2!:File;
+  image3!:File;
+ 
 
-  constructor(private fb:FormBuilder, private serviceVoiture: ServiceVoitureService   ,public dialogRef: MatDialogRef<VoitureFormulaireComponent>){
+  constructor(private fb:FormBuilder, private serviceVoiture: ServiceVoitureService   ,public dialogRef: MatDialogRef<VoitureFormulaireComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any){
     this.voiture.form = this.fb.group({
       marque:['', Validators.required],
       modele:['', Validators.required],
       anneeSortie:['', Validators.required],
-      photo2:['', Validators.required],
+      photo2: ['', Validators.required],
       photo3:['', Validators.required],
       photo4:['', Validators.required],
       quantite:['', Validators.required],
@@ -35,42 +39,36 @@ export class VoitureFormulaireComponent implements OnInit {
     marque:'',
     modele:'',
     anneeSortie:'',
-    photo1:'',
     photo2:'',
     photo3:'',
     photo4:'',
-    transmission:'',
     quantite:'',
     type:'',
     prix:''
   }
-  ngOnInit(): void {
-    const text : string| any=localStorage.getItem('voiture');
-    if(text != null){
-      this.voitureArr= JSON.parse(text);
-    }
+  // ngOnInit(): void {
+  // }
+  ImageChange(event: any) {
+    this.image = event.target.files[0];
+    console.log(this.image);
+  }
+  ImageChange2(event: any) {
+    this.image2 = event.target.files[0];
+    console.log(this.image2);
+  }
+  ImageChange3(event: any) {
+    this.image3 = event.target.files[0];
+    console.log(this.image3);
   }
 
-  photos2Change(event:any){
-  this.photos2 = event.target.file[0];
-  console.log("Chemin 1", this.photos2)
-  }
-  photos3Change(event:any){
-  this.photos3 = event.target.file[0];
-  console.log("Chemin 2", this.photos3)
-  }
-  photos4Change(event:any){
-  this.photos4 = event.target.file[0];
-  console.log("Chemin 3", this.photos4)
-  }
 
-  createVoiture() {
+  onSubmit() {
     if(this.voitureForm.valid){
 
     const newVoiture = this.voitureForm.value;
     console.log(newVoiture);
-    this.serviceVoiture.createVoiture(newVoiture,this.photos2,this.photos3,this.photos4).subscribe(
-      (response) => {
+    this.serviceVoiture.createVoiture(newVoiture,this.image,this.image2,this.image3).subscribe(
+      (response :any) => {
         console.log('Voiture créée avec succès :', response);
         // Faites quelque chose avec la réponse ici
       },
@@ -82,24 +80,6 @@ export class VoitureFormulaireComponent implements OnInit {
   }
 }
 // //Modification
-// update() {
-//   // Supposons que vous avez un identifiant unique pour chaque élément, appelé 'id'
-//   const projectIdToUpdate = this.voiture.id; // 'projet.id' devrait contenir l'identifiant de l'élément que vous éditez
-  
-//   // Recherchez l'élément à mettre à jour en fonction de son identifiant
-//   const recordIndex = this.voitureArr.findIndex(m => m.id === projectIdToUpdate);
-
-//   if (recordIndex !== -1) {
-//     // Mettez à jour la propriété 'nom' de l'élément trouvé
-//     this.voitureArr[recordIndex].nom = this.voiture.marque;
-
-//     // Réinitialisez le modèle de formulaire après la mise à jour
-//     this.voiture = {};
-
-//     // Enregistrez les modifications dans localStorage si nécessaire
-//     localStorage.setItem('projet', JSON.stringify(this.voitureArr));
-//   }
-// }
 //Fermeture du modal
 onNoClick(): void {
   this.dialogRef.close();

@@ -24,6 +24,8 @@ import { ParkingActifComponent } from './parking-actif/parking-actif.component';
 import { ParkingInactifComponent } from './parking-inactif/parking-inactif.component';
 import { ActifFormulaireComponent } from './actif-formulaire/actif-formulaire.component';
 import { SuspendreFormulaireComponent } from './suspendre-formulaire/suspendre-formulaire.component';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 
 @NgModule({
   imports: [
@@ -49,6 +51,7 @@ import { SuspendreFormulaireComponent } from './suspendre-formulaire/suspendre-f
     SuperAdminComponent,
     ActifFormulaireComponent,
     SuspendreFormulaireComponent,
+    LoginPageComponent
    
     
   ],
