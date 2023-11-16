@@ -3,9 +3,9 @@ import {AfterViewInit, Component,OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
-import { SuperAdmin } from 'app/model/superAdmin';
 import { MatSort } from '@angular/material/sort';
 import { AdminParkingServiceService } from 'app/admin-parking-service.service';
+import { AdminParking } from 'app/model/adminParking';
 @Component({
   selector: 'app-dashboard-super-admin',
   templateUrl: './dashboard-super-admin.component.html',
@@ -14,9 +14,9 @@ import { AdminParkingServiceService } from 'app/admin-parking-service.service';
   imports: [MatTableModule, MatPaginatorModule],
 })
 export class DashboardSuperAdminComponent implements OnInit{
-  displayedColumns: string[] = ['id', 'nomAdmin', 'nomParking', 'email','localisation'];
-  dataSource = new MatTableDataSource<SuperAdmin>();
-  admin: SuperAdmin[]=[];
+  displayedColumns: string[] = [ 'nomPrenom', 'nomParking', 'email','adresseParking'];
+  dataSource = new MatTableDataSource<AdminParking>();
+  admin:AdminParking[]=[];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort ) sort!: MatSort;

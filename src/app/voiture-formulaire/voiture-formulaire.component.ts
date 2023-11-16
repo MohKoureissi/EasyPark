@@ -5,6 +5,8 @@ import {FormsModule, NgForm} from '@angular/forms';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import { ServiceVoitureService } from 'app/service-voiture.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AdminParking } from 'app/model/adminParking';
+import { AuthServiceService } from 'app/auth-service.service';
 
 @Component({
   selector: 'app-voiture-formulaire',
@@ -18,10 +20,15 @@ export class VoitureFormulaireComponent {
   image!: File;
   image2!:File;
   image3!:File;
+  adminRecup: AdminParking | undefined;
  
 
-  constructor(private fb:FormBuilder, private serviceVoiture: ServiceVoitureService   ,public dialogRef: MatDialogRef<VoitureFormulaireComponent>,
+  constructor(private fb:FormBuilder, private serviceVoiture: ServiceVoitureService ,private authService: AuthServiceService  ,public dialogRef: MatDialogRef<VoitureFormulaireComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any){
+
+      this.adminRecup = this.authService.getAdminConnecte();
+      console.log("Admin recup dans guide ", this.adminRecup);
+
     this.voiture.form = this.fb.group({
       marque:['', Validators.required],
       modele:['', Validators.required],
@@ -32,6 +39,7 @@ export class VoitureFormulaireComponent {
       quantite:['', Validators.required],
       type:['', Validators.required],
       prix:['', Validators.required],
+      admin: this.adminRecup
     })
   }
   voitureArr: any[]= [];

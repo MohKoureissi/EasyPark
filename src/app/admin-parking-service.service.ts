@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AdminParkingServiceService {
-  private baseUrl = 'localhost:8080/adminParking';
+  private baseUrl = 'http://localhost:8080/adminParking';
 
 
   constructor(private http: HttpClient) {}
@@ -40,7 +40,7 @@ loginAdmin(email: string, motdepasse: string): Observable<any> {
     motdepasse: motdepasse,
   };
 
-  return this.http.post(`${this.baseUrl}/login`, body);
+  return this.http.get(`${this.baseUrl}/login?email=${email}&motdepasse=${motdepasse}`);
 }
 
 }

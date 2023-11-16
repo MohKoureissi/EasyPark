@@ -78,31 +78,31 @@
   <form [formGroup]="voiture.form" (ngSubmit)="onSubmit()" enctype="multipart/form-data" >
       <div class="form-container">
         <!-- 1ere Ligne -->
-        <div class="input-container">
+        <div class="input-container"  style="display: flex;">
           <div class="input-field">
-            <input type="text" id="marque" formControlName="marque" placeholder="Ex: Mercedes"  required >
+            <input type="text" id="marque" formControlName="marque" placeholder="Marque"  required >
           </div>
-          <div class="nput-field">
-            <input type="text" id="modele" formControlName="modele" placeholder="Ex: AMG"  required >
+          <div class="input-field">
+            <input type="text" id="modele" formControlName="modele" placeholder="Modèle"  required >
           </div>
         </div>
         <!-- 2eme Ligne -->
         <div class="input-container">
           <div class="input-field">
-            <input type="text" id="anneeSortie" formControlName="anneeSortie" placeholder="Ex: 2023"  required >
+            <input type="text" id="anneeSortie" formControlName="anneeSortie" placeholder="Année Sortie"  required >
           </div>
 
           <div class="nput-field">
-            <input type="text" id="quantite" formControlName="quantite" placeholder="Ex: 25"  required >
+            <input type="text" id="quantite" formControlName="quantite" placeholder="Quantité"  required >
           </div>
         </div>
         <!-- 3eme Ligne -->
         <div class="input-container">
           <div class="input-field">
-            <input type="text" id="prix" formControlName="prix" placeholder="Ex: 45 000000"  required >
+            <input type="text" id="prix" formControlName="prix" placeholder="Prix"  required >
           </div>
           <div class="nput-field">
-            <input type="file" class="form-control" formControlName="photo4" multiple="multiple" accept="image/*" (change)="ImageChange($event)"  required>
+            <input type="file" class="form-control" placeholder="choisir un fichier"  formControlName="photo4" multiple="multiple" accept="image/*" (change)="ImageChange($event)"  required>
           </div>
         </div>
        
@@ -113,6 +113,11 @@
             </div>
             <div class="input-filed">
               <input type="file" class="form-control" formControlName="photo3" multiple="multiple" accept="image/*" (change)="ImageChange3($event)" required>
+            </div>
+          </div>
+          <div class="input-container">
+            <div class="input-field">
+              <input type="text" id="type" formControlName="type" placeholder="Type: Location ou Vente"  required >
             </div>
           </div>
 

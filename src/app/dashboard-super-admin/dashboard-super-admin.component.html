@@ -36,25 +36,21 @@
                       </div>
                       <div class="card-body">
                           <table mat-table [dataSource]="dataSource" >
-                        <ng-container matColumnDef="id">
-                          <th mat-header-cell *matHeaderCellDef> ID  </th>
-                          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-                        </ng-container>
                         <ng-container matColumnDef="nomParking">
                           <th mat-header-cell *matHeaderCellDef> Nom Parking </th>
                           <td mat-cell *matCellDef="let element"> {{element.nomParking}} </td>
                         </ng-container>
-                        <ng-container matColumnDef="nomAdmin">
+                        <ng-container matColumnDef="nomPrenom">
                           <th mat-header-cell *matHeaderCellDef> Nom Admin </th>
-                          <td mat-cell *matCellDef="let element"> {{element.nomAdmin}} </td>
+                          <td mat-cell *matCellDef="let element"> {{element.nomPrenom}} </td>
                         </ng-container>
                         <ng-container matColumnDef="email">
                           <th mat-header-cell *matHeaderCellDef> Email </th>
                           <td mat-cell *matCellDef="let element"> {{element.email}} </td>
                         </ng-container>
-                        <ng-container matColumnDef="localisation">
-                            <th mat-header-cell *matHeaderCellDef> Localisation </th>
-                            <td mat-cell *matCellDef="let element"> {{element.localisation}} </td>
+                        <ng-container matColumnDef="adresseParking">
+                            <th mat-header-cell *matHeaderCellDef> Adresse Parking </th>
+                            <td mat-cell *matCellDef="let element"> {{element.adresseParking}} </td>
                           </ng-container>
                     
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

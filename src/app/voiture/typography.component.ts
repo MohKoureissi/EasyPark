@@ -16,7 +16,7 @@ export class TypographyComponent  {
   openDialog(){
     const dialog = this.dialogRef.open(VoitureFormulaireComponent, {
       width:'520px',
-      height:'400px'
+     
     })
   }
 
