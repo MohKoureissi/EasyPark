@@ -21,10 +21,9 @@ export class MaintenanceFormulaireComponent implements OnInit{
   
   maintenanceForm!: FormGroup;
   voitureSelect: Voiture |any;
-  adminRecup: AdminParking | undefined;
 
   ngOnInit(): void {
-    this.mainteService.getAllMaintenances().subscribe(res => {
+    this.voitureService.getAllVoitures().subscribe(res => {
      this.voitureSelect = res;
      console.log("voiture",this.voitureSelect);
     }) ;
@@ -34,15 +33,11 @@ export class MaintenanceFormulaireComponent implements OnInit{
   constructor(private authService: AuthServiceService  ,public dialogRef:MatDialogRef<MaintenanceFormulaireComponent>,private mainteService: MaintenanceService ,
     private fb:FormBuilder,private voitureService: ServiceVoitureService,  @Inject(MAT_DIALOG_DATA) public data: any){
      
-      this.adminRecup = this.authService.getAdminConnecte();        // Recuperer l'admin Connecter
-      console.log("Admin recup dans la base ", this.adminRecup);
-
       this.maintenanceForm = this.fb.group({
         voiture: [this.data ? this.data.voiture.marque: '', Validators.required],
         date: [this.data ? this.data.date: '', Validators.required],
         prix: [this.data ? this.data.prix: '', Validators.required],
-        desciption: [this.data ? this.data.desciption: '', Validators.required],
-        adminParking: this.adminRecup,
+        description: [this.data ? this.data.description: '', Validators.required],
       })
     }
 
@@ -53,11 +48,11 @@ export class MaintenanceFormulaireComponent implements OnInit{
         // if(this.data){
           // console.log("test3");
   
-      const newVente = this.maintenanceForm.value;
-      console.log(newVente);
-      this.mainteService.createMaintenance(newVente).subscribe(
+      const newMaintenance = this.maintenanceForm.value;
+      console.log(newMaintenance);
+      this.mainteService.createMaintenance(newMaintenance).subscribe(
         (response) => {
-          console.log('Vente ajouter avec succès :', response);
+          console.log('Maintenance ajouter avec succès :', response);
           // Faites quelque chose avec la réponse ici
         },
         (error) => {
@@ -68,11 +63,6 @@ export class MaintenanceFormulaireComponent implements OnInit{
     }
    
   }
-  
- 
-  
-
-
 //Fermeture du modal
 onNoClick(): void {
   this.dialogRef.close();
