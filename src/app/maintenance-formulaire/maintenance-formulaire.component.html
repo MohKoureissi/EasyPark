@@ -1,40 +1,39 @@
-<fieldset style="border-radius: 20px;">
+
     <div class="image" style="align-items: center; justify-content: center;display: flex;">
       <img src="../../assets/img/location.jpg" width="172px" height="156px" alt="image non disponible">
     </div>
     <h3 style="text-align: center; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-weight: bold;">Nouvelle Maintenance</h3>
-    <form class="example-form" >
-       
-      <div class="input-group mb-3" style="    align-items: center; justify-content: center;">
-        <label class="input-group-text" style="margin-left: -22px; font-size: large; font-weight: bold; color: #308D89" for="inputGroupSelect01">Voiture</label>
-        <select class="form-select" formControlName="idVoiture" id="inputGroupSelect01" style="width: 180px;height: 40px;margin-left: 40px;">
-          <option selected>Choisir...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-      </div>
-        <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-         <div class="formLabel"> <label  style=" margin-left: 20px;font-size: large; font-weight: bold; color: #308D89;">Prix:</label></div>
-         <div class="formInput"> <input [(ngModel)]="maintenance.prix" style="margin-left: 5%;" class="form-control" type="text" placeholder="Moussa" aria-label="default input example" ></div>
-        </div>
-        <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-         <div class="formLabel"> <label  style=" margin-left: 2px;font-size: large; font-weight: bold; color: #6fb3af;">Date :</label></div>
-         <div class="formInput"> <input [(ngModel)]="maintenance.date" style="margin-left: -7%;" class="form-control" type="date" aria-label="default input example" ></div>
-        </div>
-        <div class="inputGroupe" style="display: flex; align-items: center; justify-content: center;">
-         <div class="formLabel"> <label  style=" margin-left: 2px;font-size: large; font-weight: bold; color: #6fb3af;">Description :</label></div>
-         <div class="formInput"> <input [(ngModel)]="maintenance.description" style="margin-left: 5%;" class="form-control" type="text" placeholder="Moussa" aria-label="default input example" ></div>
-        </div> 
-        <div class="boutton">
-          <div>
-          <button type="button"style="margin-right:15px;border-radius: 10px;font-size: 15px;" (click)="onNoClick()" class="btn btn-danger">Annuler</button>
+    <div class="formulare">
+      <form [formGroup]="maintenanceForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" >
+          <div class="form-container" style="margin-left: 70px;">
+            <!-- 1ere Ligne -->
+            <div class="input-container" >
+              <div class="input-desc">
+                <select name="voiture" id="voiture" formControlName="voiture">
+                  <option value="" placeholder="Selectionner la voiture">Sélectionnez la voiture</option>
+                  <option *ngFor="let voiture of voitureSelect" [ngValue]="voiture">{{ voiture.marque }}</option>
+               </select>
+              </div>
+            </div>
+            <!-- 2Eme ligne -->
+            <div class="input-container" >
+              <div class="input-field">
+                <input type="number" id="prix" formControlName="prix" placeholder="Prix"  required >
+              </div>
+            </div>
+            <div class="input-container" >
+            <div class="input-field">
+              <input type="date" id="dateAchat" formControlName="dateAchat" placeholder="Date"  required >
+            </div>
           </div>
-          <div>
-          <button type="button" style="margin-left: 30px;border-radius: 10px;font-size: 15px;"  class="btn btn-info">Enregistrer</button>
+            <div class="input-container" >
+            <div class="input-field">
+              <input type="text" id="description" formControlName="description" placeholder="Description"  required >
+            </div>
           </div>
-        </div>
-        
-    </form>
-   
-</fieldset>
+          </div>
+            <div mat-dialog-actions class="actions">
+              <button  (click)="onNoClick()" mat-button mat-dialog-close><i class='bx bx-x'></i> Annuler</button>
+              <button mat-raised-button color="primary" type="submit" [disabled]="!maintenanceForm.valid"> <i class='bx bx-check'></i>{{ data ? "Modifier" : "Ajouter" }}</button>
+            </div> 
+         

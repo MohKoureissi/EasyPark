@@ -1,29 +1,3 @@
-<!-- <fieldset style="border-radius: 20px; overflow-y: auto; max-height: 80vh;" >
-    <div class="image" style="align-items: center; justify-content: center;display: flex;">
-      <img src="../../assets/img/location.jpg" width="172px" height="156px" alt="image non disponible">
-    </div>
-    <h3 style="text-align: center; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-weight: bold;">Nouvelle Vente</h3>
-    <form class="example-form">
-      <div class="input-group mb-3" style="    align-items: center; justify-content: center;">
-        <label class="input-group-text" style="margin-left: -22px; font-size: large; font-weight: bold; color: #308D89" for="inputGroupSelect01">Voiture</label>
-        <select class="form-select" formControlName="idVoiture" id="inputGroupSelect01" style="width: 180px;height: 40px;margin-left: 40px;">
-          <option selected>Choisir...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-      </div>
-        <div class="boutton">
-          <div>
-          <button type="button"style="margin-right:15px;border-radius: 10px;font-size: 15px;" (click)="onNoClick()" class="btn btn-danger">Annuler</button>
-          </div>
-          <div>
-          <button type="button" style="margin-left: 30px;border-radius: 10px;font-size: 15px;"  class="btn btn-info">Enregistrer</button>
-          </div>
-        </div>
-    </form>
-</fieldset> -->
-
 
 <div class="image" style="align-items: center; justify-content: center;display: flex;">
   <img src="../../assets/img/location.jpg" width="159px" height="156px" alt="image non disponible">
@@ -31,11 +5,11 @@
 <h3 style=" margin-top: -1.5%; text-align: center; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-weight: bold;">Ajouter Voiture</h3>
 <div class="formulare">
   <form [formGroup]="venteForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" >
-      <div class="form-container">
+      <div class="form-container" style="margin-left: 70px;">
         <!-- 1ere Ligne -->
         <div class="input-container" >
           <div class="input-desc">
-            <select name="idVoiture" id="idVoiture" formControlName="idVoiture">
+            <select name="voiture" id="voiture" formControlName="voiture">
               <option value="" placeholder="Selectionner la voiture">Sélectionnez la voiture</option>
               <option *ngFor="let voiture of voitureSelect" [ngValue]="voiture">{{ voiture.marque }}</option>
            </select>
@@ -43,7 +17,7 @@
         </div>
         <div class="input-container" >
           <div class="input-desc">
-            <select name="idClient" id="idClient" formControlName="idClient">
+            <select name="client" id="client" formControlName="client">
               <option value="" placeholder="Selectionner la voiture">Sélectionnez la voiture</option>
               <option *ngFor="let client of clientSelect" [ngValue]="client">{{ client.nom}}</option>
            </select>
@@ -54,7 +28,14 @@
           <div class="input-field">
             <input type="number" id="prix" formControlName="prix" placeholder="Prix"  required >
           </div>
-          <div class="input-field">
-            <input type="text" id="modele" formControlName="modele" placeholder="Modèle"  required >
-          </div>
         </div>
+        <div class="input-container" ></div>
+        <div class="input-field">
+          <input type="date" id="dateAchat" formControlName="dateAchat" placeholder="Date"  required >
+        </div>
+      </div>
+        <div mat-dialog-actions class="actions">
+          <button  (click)="onNoClick()" mat-button mat-dialog-close><i class='bx bx-x'></i> Annuler</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!venteForm.valid"> <i class='bx bx-check'></i>{{ data ? "Modifier" : "Ajouter" }}</button>
+        </div> 
+     

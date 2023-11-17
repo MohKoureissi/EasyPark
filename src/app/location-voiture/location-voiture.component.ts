@@ -4,6 +4,8 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import { LocationFormulaireComponent } from 'app/location-formulaire/location-formulaire.component';
+import { MatSort } from '@angular/material/sort';
+import { LocationService } from 'app/location.service';
 
 @Component({
   selector: 'app-location-voiture',
@@ -12,40 +14,31 @@ import { LocationFormulaireComponent } from 'app/location-formulaire/location-fo
   standalone: true, 
   imports: [MatTableModule, MatPaginatorModule],
 })
-export class LocationVoitureComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['id', 'voiture', 'client', 'date', 'duree'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  ngAfterViewInit() {  
-    this.dataSource.paginator = this.paginator;
-  }
-  constructor(private matDialog: MatDialog) {}
-    openDialog() {
-      this.matDialog.open(LocationFormulaireComponent, {
-        width: '500px',
-      })
-   }
-
-  ngOnInit() {
+export class LocationVoitureComponent implements OnInit {
+  displayedColumns: string[] = ['idLocation', 'voiture', 'client','prix' ,'duree','dateLocation'];
+  dataSource = new MatTableDataSource<Location>();
+  locations: Location[] = [];
+ 
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
+    @ViewChild(MatSort ) sort!: MatSort;
+  constructor(private locationService: LocationService ,private dialogRef: MatDialog) {
+    
+    // this.dataSource = new MatTableDataSource(this.locations);
   }
 
-}
-export interface PeriodicElement {
-  voiture: string;
-  id: number;
-  client: string;
-  date: string;
-  duree: string;
-}
+  ngOnInit(): void {
+    this.locationService.getAllLocations().subscribe(location => {
+      this.locations = location;
+      this.dataSource = new MatTableDataSource(this.locations);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, voiture: 'Koureissi', client:'Mohamed', date: '2023-10-12', duree: '08H'},
-  {id: 2, voiture: 'Koureissi', client:'Mohamed', date: '2023-10-12', duree: '08H'},
-  {id: 3, voiture: 'Koureissi', client:'Mohamed', date: '2023-10-12', duree: '08H'},
-  {id: 4, voiture: 'Koureissi', client:'Mohamed', date: '2023-10-12', duree: '08H'},
-  {id: 5, voiture: 'Koureissi', client:'Mohamed', date: '2023-10-12', duree: '08H'},
-  {id: 6, voiture: 'Koureissi', client:'Mohamed', date: '2023-10-12', duree: '08H'},
-];
+  openDialog() {
+    const dialog = this.dialogRef.open(LocationFormulaireComponent, {
+      width: '400px',
+    })
+ }
 
+}

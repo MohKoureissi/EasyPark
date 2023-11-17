@@ -42,5 +42,9 @@ loginAdmin(email: string, motdepasse: string): Observable<any> {
 
   return this.http.get(`${this.baseUrl}/login?email=${email}&motdepasse=${motdepasse}`);
 }
+ // Méthode pour changer l'accès d'un enseignant
+ changeAccess(idAdminParking: number) {
+  return this.http.put(`${this.baseUrl}/changeAccess/${idAdminParking}`, {});
+}
 
 }

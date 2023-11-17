@@ -12,21 +12,25 @@
                     <div class="card-body">
                         <!-- <div class="table-responsive"> -->
                           <table mat-table [dataSource]="dataSource" >
-                              <ng-container matColumnDef="id">
-                                <th mat-header-cell *matHeaderCellDef> ID  </th>
-                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                              <ng-container matColumnDef="idAchat">
+                                <th mat-header-cell *matHeaderCellDef> ID Achat </th>
+                                <td mat-cell *matCellDef="let element"> {{element.idAchat}} </td>
                               </ng-container>
                               <ng-container matColumnDef="voiture">
-                                <th mat-header-cell *matHeaderCellDef> ID Voiture </th>
-                                <td mat-cell *matCellDef="let element"> {{element.voiture}} </td>
+                                <th mat-header-cell *matHeaderCellDef>  Voiture </th>
+                                <td mat-cell *matCellDef="let element"> {{element.voiture.marque}} {{element.voiture.modele}} </td>
                               </ng-container>
                               <ng-container matColumnDef="client">
-                                <th mat-header-cell *matHeaderCellDef> ID Client </th>
-                                <td mat-cell *matCellDef="let element"> {{element.client}} </td>
+                                <th mat-header-cell *matHeaderCellDef>  Client </th>
+                                <td mat-cell *matCellDef="let element"> {{element.client.nom}} {{element.client.prenom}} </td>
                               </ng-container>
-                              <ng-container matColumnDef="date">
+                              <ng-container matColumnDef="prix">
+                                <th mat-header-cell *matHeaderCellDef> Prix </th>
+                                <td mat-cell *matCellDef="let element"> {{element.prix}} </td>
+                              </ng-container>
+                              <ng-container matColumnDef="dateAchat">
                                 <th mat-header-cell *matHeaderCellDef> Date </th>
-                                <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                                <td mat-cell *matCellDef="let element"> {{element.dateAchat}} </td>
                               </ng-container>
                           
                               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

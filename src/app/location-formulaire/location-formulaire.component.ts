@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {FormsModule, NgForm} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, NgForm, Validators} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+import { ClientModel } from 'app/model/clientModel';
+import { LocationService } from 'app/location.service';
+import { ServiceVoitureService } from 'app/service-voiture.service';
+import { ServiceClientService } from 'app/service-client.service';
 interface Voiture {
   value: number;
   viewValue: string;
@@ -17,64 +21,53 @@ interface Client{
   styleUrls: ['./location-formulaire.component.scss']
 })
 export class LocationFormulaireComponent {
-  // L'ensemble des voitures et clients stocké dans la base
-  voitures: Voiture[] = [
-    {value: 0, viewValue: 'Mercedes'},
-    {value: 1, viewValue: 'Toyota'},
-    {value: 2, viewValue: 'Nissan'},
-  ];
-  clients: Client[]=[
-    {value: 1, viewValue:'Mohamed'},
-    {value: 2, viewValue:'Koureissi'},
-  ];
-  constructor(public dialogRef:MatDialogRef<LocationFormulaireComponent>){}
-  locationArr: any[]= [];
-  location: any={
-    id:0,
-    voiture:'',
-    client:'',
-    date:'',
-    duree:'',
-  }
-  ngOnInit(): void {
-    const text : string| any=localStorage.getItem('location');
-    if(text != null){
-      this.locationArr= JSON.parse(text);
-    }
-  }
-  //Enregistrement
-  saveLocation(foms :NgForm){
-    // debugger
-    // this.projetArr.push(this.projet);
-    this.location.id = this.locationArr.length +1;
-    this.locationArr.push(this.location);
-    // localStorage.setItem('projet',JSON.stringify(this.voitureArr));
-    this.location= {
-      id : 0,
-      voiture:'',
-    client:'',
-    date:'',
-    duree:'',
-    }
-}
-// Modification
-update() {
-  // Supposons que vous avez un identifiant unique pour chaque élément, appelé 'id'
-  const locationtIdToUpdate = this.location.id; // 'projet.id' devrait contenir l'identifiant de l'élément que vous éditez
+
   
-  // Recherchez l'élément à mettre à jour en fonction de son identifiant
-  const recordIndex = this.locationArr.findIndex(m => m.id === locationtIdToUpdate);
-
-  if (recordIndex !== -1) {
-    // Mettez à jour la propriété 'nom' de l'élément trouvé
-    this.locationArr[recordIndex].nom = this.location.nom;
-
-    // Réinitialisez le modèle de formulaire après la mise à jour
-    this.location = {};
-
-    // Enregistrez les modifications dans localStorage si nécessaire
-    localStorage.setItem('location', JSON.stringify(this.locationArr));
+  locationForm!: FormGroup;
+  voitureSelect: Voiture |any;
+  clientSelect: ClientModel |any;
+  
+  ngOnInit(): void {
+    this.voitureService.getAllVoitures().subscribe(res => {
+     this.voitureSelect = res;
+     console.log("voiture",this.voitureSelect);
+    }) ;
+    this.clientService.getAllClients().subscribe(res => {
+      this.clientSelect = res;
+      console.log("client", this.clientSelect);
+    })
   }
+  constructor(private locationService: LocationService   ,private fb:FormBuilder,private voitureService: ServiceVoitureService,private clientService: ServiceClientService,public dialogRef: MatDialogRef<LocationFormulaireComponent>,  @Inject(MAT_DIALOG_DATA) public data: any){
+    this.locationForm= this.fb.group({
+      voiture: [this.data ? this.data.voiture.marque: '', Validators.required],
+      client: [this.data ? this.data.client.nom:'', Validators.required],
+      dateLocation: [this.data ? this.data.dateLocation: '', Validators.required],
+      prix: [this.data ? this.data.prix: '', Validators.required],
+      duree: [this.data ? this.data.duree: '', Validators.required]
+    })
+  }
+
+  onSubmit() {
+    console.log("test1");
+    if(this.locationForm.valid ){
+      console.log("test2");
+      // if(this.data){
+        // console.log("test3");
+
+    const newVente = this.locationForm.value;
+    console.log(newVente);
+    this.locationService.createLocation(newVente).subscribe(
+      (response) => {
+        console.log('Vente ajouter avec succès :', response);
+        // Faites quelque chose avec la réponse ici
+      },
+      (error) => {
+        console.error('Erreur lors du ajout de la vente :', error);
+        // Gérer l'erreur ici
+      }
+    );
+  }
+ 
 }
 //Fermeture du modal
 onNoClick(): void {

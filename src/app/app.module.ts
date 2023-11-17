@@ -25,6 +25,7 @@ import { ParkingInactifComponent } from './parking-inactif/parking-inactif.compo
 import { ActifFormulaireComponent } from './actif-formulaire/actif-formulaire.component';
 import { SuspendreFormulaireComponent } from './suspendre-formulaire/suspendre-formulaire.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { LocationService } from './location.service';
 
 
 @NgModule({
@@ -55,7 +56,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
    
     
   ],
-  providers: [],
+  providers: [LocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

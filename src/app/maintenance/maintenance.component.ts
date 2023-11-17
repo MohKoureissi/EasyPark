@@ -3,6 +3,9 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import { MaintenanceFormulaireComponent } from 'app/maintenance-formulaire/maintenance-formulaire.component';
+import {Maintenance} from 'app/model/maintenance';
+import { MatSort } from '@angular/material/sort';
+import { MaintenanceService } from 'app/maintenance.service';
 
 @Component({
   selector: 'app-maintenance',
@@ -11,39 +14,32 @@ import { MaintenanceFormulaireComponent } from 'app/maintenance-formulaire/maint
   standalone: true, 
   imports: [MatTableModule, MatPaginatorModule],
 })
-export class MaintenanceComponent implements OnInit, AfterViewInit{
-  displayedColumns: string[] = ['id', 'voiture', 'prix', 'date', 'description'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+export class MaintenanceComponent implements OnInit{
+  displayedColumns: string[] = ['idMaintenance', 'voiture', 'prix', 'date', 'description'];
+  dataSource = new MatTableDataSource<Maintenance>();
+  maintenances: Maintenance[]= [];
 
+  @ViewChild(MatSort ) sort!: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  ngAfterViewInit() {  
-    this.dataSource.paginator = this.paginator;
+  constructor(private dialogRef: MatDialog, private mainteService: MaintenanceService) {
+    
+    this.dataSource = new MatTableDataSource(this.maintenances);
   }
-  constructor(private matDialog: MatDialog) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.mainteService.getAllMaintenances().subscribe(maintenance => {
+      this.maintenances = maintenance;
+      this.dataSource = new MatTableDataSource(this.maintenances);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
-  openDialog() {
-    this.matDialog.open(MaintenanceFormulaireComponent, {
-      width: '500px',
-    })
- }
+    openDialog() {
+      const dialog = this.dialogRef.open(MaintenanceFormulaireComponent, {
+        width: '400px',
+      })
+   }
+ 
+ 
 
 }
-export interface PeriodicElement {
-  voiture: string;
-  id: number;
-  prix: number;
-  date: string;
-  description: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, voiture: 'Toyota CHR', prix: 20000, date: '2023-10-12', description:'Ma première Maintenance Ma première MaintenanceMa première MaintenanceMa première MaintenanceMa première Maintenance'},
-  {id: 2, voiture: 'Toyota CHR', prix: 20000, date: '2023-10-12', description:'Ma première Maintenance'},
-  {id: 3, voiture: 'Toyota CHR', prix: 20000, date: '2023-10-12', description:'Ma première Maintenance'},
-  {id: 4, voiture: 'Toyota CHR', prix: 20000, date: '2023-10-12', description:'Ma première Maintenance'},
-  {id: 5, voiture: 'Toyota CHR', prix: 20000, date: '2023-10-12', description:'Ma première Maintenance'},
-  {id: 6, voiture: 'Toyota CHR', prix: 20000, date: '2023-10-12', description:'Ma première Maintenance'},
-];

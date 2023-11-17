@@ -21,8 +21,8 @@ export class ServiceVoitureService {
     return this.http.post(`${this.apiUrl}/create`, formData);
   }
 
-  getAllVoitures(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/read`);
+  getAllVoitures(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/read`);
   }
 
   getVoitureById(id: number): Observable<any> {

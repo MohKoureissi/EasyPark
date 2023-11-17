@@ -3,32 +3,24 @@
     <div class="card">
       <div class="row">
         <div class="card-header card-header-info col-lg-3 col-md-12" style="margin-left: 30px;margin-right: 30px;" >
-            <button class="btn-info" style="width: 90%;margin:auto;height: 100%;font-size: x-large;border: none;">+ Nouvelle Voiture</button>
+            <button class="btn-info" (click)="openDialog()" style="width: 90%;margin:auto;height: 100%;font-size: x-large;border: none;">+ Nouvelle Voiture</button>
             <!-- <button mat-raised-button (click)="openDialog()">Open dialog without animation</button> -->
         </div>
       </div>
-      <button (click)="openDialog()">Popup</button>
-        <!-- <div class="card-body">
+      <!-- <button (click)="openDialog()">Popup</button> -->
+       <div class="card-body">
           <div class="row">
             <div class="card col-lg-3 col-md-12"  style="width: 30rem;">
-              <div *ngFor="let voiture of voitureArr">
-                <img src="{{voiture.photo1}}" class="card-img-top" alt="...">
+              <div *ngFor="let voiture of voitures">
+                <img [src]="voiture.photo2" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title" style="font-weight: bold;">{{voiture.nom}}</h5>
+                  <h5 class="card-title" style="font-weight: bold;">{{voiture.marque}} {{voiture.modele}}</h5>
                   <p class="card-text" style="font-size: large;">Quantité: {{voiture.quantite}}</p>
-                  <a style="margin-left: 10%; width: 80%; font-size: large;" href="#" class="btn">Details</a>
+                  <a style="margin-left: 10%; width: 80%; font-size: large;" href="#" class="btn">Details    </a>
                 </div>
               </div>
-              </div> -->
-            <!-- <div class="card col-lg-3 col-md-12" style="width: 30rem;">
-                <img src="/assets/img/pickup.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title" style="font-weight: bold;">GMC 700</h5>
-                  <p class="card-text" style="font-size: large;">Quantité: 5</p>
-                  <a style="margin-left: 10%; width: 80%; font-size: large;" href="#" class="btn btn-info">Details</a>
-                </div>
-              </div> -->
-            <!-- </div> -->
+              </div> 
+           
         </div>
     </div>
 </div>

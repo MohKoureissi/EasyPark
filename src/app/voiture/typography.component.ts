@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { Voiture } from 'app/model/voiture';
+import { ServiceVoitureService } from 'app/service-voiture.service';
 import { VoitureFormulaireComponent } from 'app/voiture-formulaire/voiture-formulaire.component';
 
 @Component({
@@ -10,9 +13,27 @@ import { VoitureFormulaireComponent } from 'app/voiture-formulaire/voiture-formu
   // imports: [MatButtonModule, MatDialogModule],
 })
 export class TypographyComponent  {
+  displayedColumns: string[] = ['photo2', 'marque', 'modele','quantite'];
+  // dataSource = new MatTableDataSource<Voiture>();
+  voitures: Voiture[] = [];
+ 
+    // @ViewChild(MatPaginator) paginator!: MatPaginator;
+    // @ViewChild(MatSort ) sort!: MatSort;
+  constructor(private voitureService: ServiceVoitureService ,private dialogRef: MatDialog) {
+    
+   
+    // this.dataSource = new MatTableDataSource(this.achats);
+  }
 
-  constructor(private dialogRef: MatDialog) {}
+  ngOnInit(): void {
+    this.voitureService.getAllVoitures().subscribe(voiture => {
+      this.voitures = voiture;
+      // this.dataSource = new MatTableDataSource(this.achats);
+      // this.dataSource.paginator = this.paginator;
+      // this.dataSource.sort = this.sort;
+    });
 
+  }
   openDialog(){
     const dialog = this.dialogRef.open(VoitureFormulaireComponent, {
       width:'520px',
@@ -20,32 +41,6 @@ export class TypographyComponent  {
     })
   }
 
-  //   openDialog() {
-  //    const dialog = this.matDialog.open(VoitureFormulaireComponent, {
-  //       width: '520px',
-  //     })
-  //  }
-  //  voitureArr: any[]= [];
-  //  voiture: any={
-  //    id: 0,
-  //    marque:'',
-  //    modele:'',
-  //    anneeSortie:'',
-  //    photo1:'',
-  //    photo2:'',
-  //    photo3:'',
-  //    photo4:'',
-  //    transmission:'',
-  //    quantite:'',
-  //    type:'',
-  //    prix:''
-  //  }
-  //  ngOnInit(): void {
-  //   const text : string| any=localStorage.getItem('voiture');
-  //   if(text != null){
-  //     this.voitureArr= JSON.parse(text);
-  //   }
-  // }
   }
 
 

@@ -6,6 +6,8 @@ import { Voiture } from 'app/model/voiture';
 import { ServiceClientService } from 'app/service-client.service';
 import { ServiceVoitureService } from 'app/service-voiture.service';
 import { VenteServiceService } from 'app/vente-service.service';
+import {MatSort, MatSortModule} from '@angular/material/sort';
+
 
 @Component({
   selector: 'app-vente-formulaire',
@@ -19,20 +21,21 @@ export class VenteFormulaireComponent implements OnInit {
   clientSelect: ClientModel |any;
   
   ngOnInit(): void {
-    this.voitureService.getAllVoitures.apply(res => {
+    this.voitureService.getAllVoitures().subscribe(res => {
      this.voitureSelect = res;
      console.log("voiture",this.voitureSelect);
-    }) 
-    this.clientService.getAllClients.apply(res => {
+    }) ;
+    this.clientService.getAllClients().subscribe(res => {
       this.clientSelect = res;
       console.log("client", this.clientSelect);
     })
   }
   constructor(private achatService: VenteServiceService  ,private fb:FormBuilder,private voitureService: ServiceVoitureService,private clientService: ServiceClientService,public dialogRef: MatDialogRef<VenteFormulaireComponent>,  @Inject(MAT_DIALOG_DATA) public data: any){
     this.venteForm= this.fb.group({
-      idVoiture: [this.data ? this.data.idVoiture.marque: '', Validators.required],
-      idClient: [this.data ? this.data.idClient.nom:'', Validators.required],
-      date: [this.data ? this.data.date: '', Validators.required]
+      voiture: [this.data ? this.data.voiture.marque: '', Validators.required],
+      client: [this.data ? this.data.client.nom:'', Validators.required],
+      dateAchat: [this.data ? this.data.dateAchat: '', Validators.required],
+      prix: [this.data ? this.data.prix: '', Validators.required]
     })
   }
 
@@ -59,13 +62,6 @@ export class VenteFormulaireComponent implements OnInit {
  
 }
 
-  venteArr: any[]= [];
-  vente:any={
-    id:0,
-    voiture:'',
-    client:'',
-    date:'',
-  }
   //Enregistrement
  
 // Modification

@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatSort } from '@angular/material/sort';
 import { AdminParkingServiceService } from 'app/admin-parking-service.service';
 import { AdminParking } from 'app/model/adminParking';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-dashboard-super-admin',
   templateUrl: './dashboard-super-admin.component.html',
@@ -31,13 +32,21 @@ export class DashboardSuperAdminComponent implements OnInit{
 
   ngOnInit(): void {
       this.adminParking.getAllAdminParking().subscribe(admins=>{
-      this.admin = admins;
+      this.admin = admins.filter(admin => admin.acces=== true);
       this.dataSource = new MatTableDataSource(this.admin);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
  });
 }
 
+chargerDonner(){
+  this.adminParking.getAllAdminParking().subscribe(admins=>{
+    this.admin = admins.filter(admin => admin.acces=== true);
+    this.dataSource = new MatTableDataSource(this.admin);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+});
+}
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -46,5 +55,33 @@ export class DashboardSuperAdminComponent implements OnInit{
       this.dataSource.paginator.firstPage();
     }
   }
-}
 
+  onDesActivate(idAdminParking: number){
+    Swal.fire({
+      title: 'Êtes-vous sûr de vouloir de desactiver?',
+      text: 'Il ne pourra plus acceder à la plateforme !',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Oui, desactive-le !',
+      cancelButtonText: 'Non, garde-le'
+      }).then((result) => {
+        if (result.value) {
+          this.chargerDonner();
+          this.adminParking.changeAccess(idAdminParking).subscribe();
+          this.chargerDonner();
+          Swal.fire(
+            'Desactivation!',
+            'Cet enseignant a été desactiver.',
+            'success'
+          )
+          this.chargerDonner();
+        }  else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire(
+            'Annuler',
+            'Votre admin est en sécurité ',
+            'error'
+          )
+        }
+      })
+}
+}
