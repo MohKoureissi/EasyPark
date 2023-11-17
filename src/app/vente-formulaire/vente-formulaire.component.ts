@@ -1,23 +1,64 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
-interface Food {
-  value: string;
-  viewValue: string;
-}
+import { Component, OnInit ,Inject} from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { MatDialogRef,  MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ClientModel } from 'app/model/clientModel';
+import { Voiture } from 'app/model/voiture';
+import { ServiceClientService } from 'app/service-client.service';
+import { ServiceVoitureService } from 'app/service-voiture.service';
+import { VenteServiceService } from 'app/vente-service.service';
+
 @Component({
   selector: 'app-vente-formulaire',
   templateUrl: './vente-formulaire.component.html',
   styleUrls: ['./vente-formulaire.component.scss']
 })
-export class VenteFormulaireComponent {
+export class VenteFormulaireComponent implements OnInit {
+
+  venteForm!: FormGroup;
+  voitureSelect: Voiture |any;
+  clientSelect: ClientModel |any;
   
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-  ];
-  constructor(public dialogRef: MatDialogRef<VenteFormulaireComponent>){}
+  ngOnInit(): void {
+    this.voitureService.getAllVoitures.apply(res => {
+     this.voitureSelect = res;
+     console.log("voiture",this.voitureSelect);
+    }) 
+    this.clientService.getAllClients.apply(res => {
+      this.clientSelect = res;
+      console.log("client", this.clientSelect);
+    })
+  }
+  constructor(private achatService: VenteServiceService  ,private fb:FormBuilder,private voitureService: ServiceVoitureService,private clientService: ServiceClientService,public dialogRef: MatDialogRef<VenteFormulaireComponent>,  @Inject(MAT_DIALOG_DATA) public data: any){
+    this.venteForm= this.fb.group({
+      idVoiture: [this.data ? this.data.idVoiture.marque: '', Validators.required],
+      idClient: [this.data ? this.data.idClient.nom:'', Validators.required],
+      date: [this.data ? this.data.date: '', Validators.required]
+    })
+  }
+
+  onSubmit() {
+    console.log("test1");
+    if(this.venteForm.valid ){
+      console.log("test2");
+      // if(this.data){
+        // console.log("test3");
+
+    const newVente = this.venteForm.value;
+    console.log(newVente);
+    this.achatService.createAchat(newVente).subscribe(
+      (response) => {
+        console.log('Vente ajouter avec succès :', response);
+        // Faites quelque chose avec la réponse ici
+      },
+      (error) => {
+        console.error('Erreur lors du ajout de la vente :', error);
+        // Gérer l'erreur ici
+      }
+    );
+  }
+ 
+}
+
   venteArr: any[]= [];
   vente:any={
     id:0,
@@ -25,46 +66,10 @@ export class VenteFormulaireComponent {
     client:'',
     date:'',
   }
-  ngOnInit(): void {
-    const text : string| any=localStorage.getItem('vente');
-    if(text != null){
-      this.venteArr= JSON.parse(text);
-    }
-  }
   //Enregistrement
-  saveVente(foms :NgForm){
-    // debugger
-    // this.projetArr.push(this.projet);
-    this.vente.id = this.venteArr.length +1;
-    this.venteArr.push(this.vente);
-    // localStorage.setItem('projet',JSON.stringify(this.voitureArr));
-    this.vente= {
-      id : 0,
-      voiture:'',
-    client:'',
-    date:'',
-    duree:'',
-    }
-}
+ 
 // Modification
-update() {
-  // Supposons que vous avez un identifiant unique pour chaque élément, appelé 'id'
-  const locationtIdToUpdate = this.vente.id; // 'projet.id' devrait contenir l'identifiant de l'élément que vous éditez
-  
-  // Recherchez l'élément à mettre à jour en fonction de son identifiant
-  const recordIndex = this.venteArr.findIndex(m => m.id === locationtIdToUpdate);
 
-  if (recordIndex !== -1) {
-    // Mettez à jour la propriété 'nom' de l'élément trouvé
-    this.venteArr[recordIndex].nom = this.vente.nom;
-
-    // Réinitialisez le modèle de formulaire après la mise à jour
-    this.vente = {};
-
-    // Enregistrez les modifications dans localStorage si nécessaire
-    localStorage.setItem('location', JSON.stringify(this.venteArr));
-  }
-}
 //Fermeture du modal
 onNoClick(): void {
   this.dialogRef.close();

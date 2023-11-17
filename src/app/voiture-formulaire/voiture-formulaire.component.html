@@ -49,16 +49,9 @@
               <input type="text" id="type" formControlName="type" placeholder="Type: Location ou Vente"  required >
             </div>
           </div>
-
-         
-
         </div>
-      <!-- </div> -->
-      <!-- <div class="actions">
-        <button type="submit" [disabled]="!voiture.form.valid" ><i class='bx bx-check'></i>{{ data ? "Modifier" : "Ajouter" }}</button>
-      </div> -->
        <div mat-dialog-actions class="actions">
-        <button mat-button mat-dialog-close><i class='bx bx-x'></i> Annuler</button>
+        <button  (click)="onNoClick()" mat-button mat-dialog-close><i class='bx bx-x'></i> Annuler</button>
         <button mat-raised-button color="primary" type="submit" [disabled]="!voitureForm.valid"> <i class='bx bx-check'></i>{{ data ? "Modifier" : "Ajouter" }}</button>
       </div> 
     </form>
