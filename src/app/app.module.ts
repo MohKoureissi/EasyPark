@@ -26,6 +26,7 @@ import { ActifFormulaireComponent } from './actif-formulaire/actif-formulaire.co
 import { SuspendreFormulaireComponent } from './suspendre-formulaire/suspendre-formulaire.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LocationService } from './location.service';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { LocationService } from './location.service';
     SuperAdminComponent,
     ActifFormulaireComponent,
     SuspendreFormulaireComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    InscriptionComponent
    
     
   ],
