@@ -56,7 +56,7 @@ export class MaintenanceFormulaireComponent implements OnInit{
           // Faites quelque chose avec la réponse ici
         },
         (error) => {
-          console.error('Erreur lors du ajout de la vente :', error);
+          console.error('Erreur lors du ajout de la maintenance :', error);
           // Gérer l'erreur ici
         }
       );

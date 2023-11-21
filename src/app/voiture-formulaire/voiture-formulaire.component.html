@@ -30,9 +30,11 @@
           <div class="input-field">
             <input type="text" id="prix" formControlName="prix" placeholder="Prix"  required >
           </div>
-          <div class="nput-field">
-            <input type="file" class="form-control" placeholder="choisir un fichier"  formControlName="photo4" multiple="multiple" accept="image/*" (change)="ImageChange($event)"  required>
-          </div>
+          
+            <div class="input-field">
+              <input type="text" id="type" formControlName="type" placeholder="Type: Location ou Vente"  required >
+            </div>
+          
         </div>
        
            <!-- 4eme Ligne -->
@@ -45,10 +47,11 @@
             </div>
           </div>
           <div class="input-container">
-            <div class="input-field">
-              <input type="text" id="type" formControlName="type" placeholder="Type: Location ou Vente"  required >
-            </div>
+          <div class="nput-field">
+            <input type="file" class="form-control" placeholder="choisir un fichier"  formControlName="photo4" multiple="multiple" accept="image/*" (change)="ImageChange($event)"  required>
           </div>
+        </div>
+          
         </div>
        <div mat-dialog-actions class="actions">
         <button  (click)="onNoClick()" mat-button mat-dialog-close><i class='bx bx-x'></i> Annuler</button>

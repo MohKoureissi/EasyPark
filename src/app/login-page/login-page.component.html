@@ -14,9 +14,11 @@
                             <div class="formulaire" style="justify-content: center; align-items: center; padding-left: 8%;margin-top: -95px;">
                                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"  style="min-width: 150px; max-width: 500px;  width: 100%;">
                                     <div class="input-field">
+                                        <label for="Email">Email</label>
                                         <input type="text" id="email" formControlName="email" placeholder="Ex: park@gmail.com"  required >
                                       </div>
                                       <div class="nput-field">
+                                        <label for="Mot de Passe">Mot de Passe</label>
                                         <input type="password" id="motdepasse" formControlName="motdepasse" required >
                                       </div>
                                       <div class="btn">
