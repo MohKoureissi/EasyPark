@@ -40,18 +40,18 @@ export class VoitureFormulaireComponent {
       adminParking: this.adminRecup,
     })
   }
-  voitureArr: any[]= [];
-  voiture: any={
-    marque:'',
-    modele:'',
-    anneeSortie:'',
-    photo2:'',
-    photo3:'',
-    photo4:'',
-    quantite:'',
-    type:'',
-    prix:''
-  }
+  // voitureArr: any[]= [];
+  // voiture: any={
+  //   marque:'',
+  //   modele:'',
+  //   anneeSortie:'',
+  //   photo2:'',
+  //   photo3:'',
+  //   photo4:'',
+  //   quantite:'',
+  //   type:'',
+  //   prix:''
+  // }
   // ngOnInit(): void {
   // }
   ImageChange(event: any) {
