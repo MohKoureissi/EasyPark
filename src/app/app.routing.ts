@@ -14,10 +14,6 @@ const routes: Routes =[
     redirectTo: 'login-page',
     pathMatch: 'full',
   },
-  {
-    path: 'login-page', component: LoginPageComponent
-  },
- 
    {
     path: '',
     component: AdminLayoutComponent,
@@ -27,9 +23,8 @@ const routes: Routes =[
     }]
   },
   
-  {path: 'dashboard-super-admin', component: DashboardSuperAdminComponent},
    {
-    path: 'super',
+    path: 'super-admin',
     component: SuperAdminComponent,
     children: [{
       path: '',

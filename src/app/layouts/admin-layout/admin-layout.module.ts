@@ -16,6 +16,7 @@ import { LocationFormulaireComponent } from 'app/location-formulaire/location-fo
 import { VenteFormulaireComponent } from 'app/vente-formulaire/vente-formulaire.component';
 import { MaintenanceFormulaireComponent } from 'app/maintenance-formulaire/maintenance-formulaire.component';
 import { LoginPageComponent } from 'app/login-page/login-page.component';
+import { InscriptionComponent } from 'app/inscription/inscription.component';
 
 @NgModule({
   imports: [
@@ -37,6 +38,8 @@ import { LoginPageComponent } from 'app/login-page/login-page.component';
     LocationFormulaireComponent,
     VenteFormulaireComponent,
     MaintenanceFormulaireComponent,
+    LoginPageComponent,
+    InscriptionComponent
   ]
 })
 

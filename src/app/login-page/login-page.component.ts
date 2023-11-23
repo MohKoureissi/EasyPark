@@ -15,7 +15,7 @@ export class LoginPageComponent {
 
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private adminService: AdminParkingServiceService, private router: Router, private authService: AuthServiceService, private snack: CoreServiceService) {
+  constructor(private formBuilder: FormBuilder, private adminService: AdminParkingServiceService, private router: Router, private authService: AuthServiceService) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       motdepasse: ['', Validators.required],
@@ -25,7 +25,7 @@ export class LoginPageComponent {
   onSubmit() { 
     if (this.loginForm.valid) {
       const login = this.loginForm.value;
-      console.log(login);
+      // console.log(login);
      
       this.adminService.loginAdmin(login.email, login.motdepasse).subscribe(
         (response: any) => {
@@ -33,13 +33,12 @@ export class LoginPageComponent {
           console.log("ID de l'admin est :", idAdminCon)
           localStorage.setItem('idAdminParking', idAdminCon); // stockage de l'admin connecté dans la session
           this.authService.setAdminConnecte(response); 
-          console.log("Mise à jour confirmée", response.idAdminParking)
+          // console.log("Mise à jour confirmée", response.idAdminParking)
           console.log("connexion établie", response);
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['../dashboard']);
           this.loginForm.reset();
         },
         (error: any) => {
-          this.snack.openSnackBar("Mot de passe ou nom incorrect");
           console.log("erreur", error);
         }
       );

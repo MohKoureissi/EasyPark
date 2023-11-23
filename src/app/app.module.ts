@@ -53,8 +53,6 @@ import { InscriptionComponent } from './inscription/inscription.component';
     SuperAdminComponent,
     ActifFormulaireComponent,
     SuspendreFormulaireComponent,
-    LoginPageComponent,
-    InscriptionComponent
    
     
   ],

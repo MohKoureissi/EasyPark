@@ -74,7 +74,7 @@ input{
 }
 .input-field{
   margin-bottom: 20px;
-  display: flex;
+  display: block;
   align-items: center;
   gap: 1rem;
 }
@@ -101,4 +101,9 @@ button{
 button:hover{
   transition: 25px 30px rgba(0,0,0,0.5);
   color: #a0a4d4;
+}
+.forme{
+  min-width: 150px; 
+  max-width: 500px;
+    width: 100%;
 }

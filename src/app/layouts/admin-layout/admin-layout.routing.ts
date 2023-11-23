@@ -6,9 +6,11 @@ import { TypographyComponent } from '../../voiture/typography.component';
 import { LocationVoitureComponent } from 'app/location-voiture/location-voiture.component';
 import { VenteComponent } from 'app/vente/vente.component';
 import { MaintenanceComponent } from 'app/maintenance/maintenance.component';
+import { LoginPageComponent } from 'app/login-page/login-page.component';
 
 export const AdminLayoutRoutes: Routes = [
    
+     { path: 'login-page',     component: LoginPageComponent },
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'vente',     component: VenteComponent },
