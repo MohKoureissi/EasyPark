@@ -53,8 +53,8 @@
         </div>
           
         </div>
-       <div mat-dialog-actions class="actions">
-        <button  (click)="onNoClick()" mat-button mat-dialog-close><i class='bx bx-x'></i> Annuler</button>
+       <div class="actions">
+        <button class="annuler"  (click)="onNoClick()" mat-button mat-dialog-close><i class='bx bx-x'></i> Annuler</button>
         <button  (click)="onNoClick()" mat-raised-button color="primary" type="submit" [disabled]="!voitureForm.valid"> <i class='bx bx-check'></i>{{ data ? "Modifier" : "Ajouter" }}</button>
       </div> 
     </form>

@@ -53,7 +53,7 @@ input:focus{
   outline: none;
 }
 button{
-flex: 1;
+// flex: 1;
 display : flex;
 gap : 8px;
 align-items : center;
@@ -61,9 +61,21 @@ background-color: #308D89;
 color: #fff;
 border: none;
 padding: 5px 10px;
+width: 120px;
 cursor: pointer;
 border-radius: 8px;
 transition: background-color 0.3s;
+}
+.annuler{
+  gap : 8px;
+align-items : center;
+background-color: rgb(228, 20, 20);
+color: #fff;
+margin-left: 150px;
+width: 120px;
+}
+.annuler:hover{
+  background-color: gray;
 }
 button:first-child {
   margin-right: 5px;
@@ -74,7 +86,7 @@ button:last-child {
 } 
 
 button:hover {
-  background-color: #CCCE32;
+  background-color: #308D89;
 }
 
 
@@ -107,6 +119,7 @@ button:hover {
 }
 .actions {
   display: flex;
+  justify-content: center;
   align-items: center;
   margin-right: -100px;
   

@@ -51,6 +51,7 @@ export class VenteFormulaireComponent implements OnInit {
     this.achatService.createAchat(newVente).subscribe(
       (response) => {
         console.log('Vente ajouter avec succès :', response);
+        this.achatService.triggerupdate
         // Faites quelque chose avec la réponse ici
       },
       (error) => {

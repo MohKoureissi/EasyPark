@@ -22,13 +22,13 @@ export class VenteComponent implements OnInit {
  
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort ) sort!: MatSort;
-  constructor(private venteService: VenteServiceService ,private dialogRef: MatDialog) {
+  constructor(private achatService: VenteServiceService ,private dialogRef: MatDialog) {
     
     this.chargerVente();
     // this.dataSource = new MatTableDataSource(this.achats);
   }
   chargerVente(){
-    this.venteService.getAllAchats().subscribe(achat => {
+    this.achatService.getAllAchats().subscribe(achat => {
       this.achats = achat;
       this.dataSource = new MatTableDataSource(this.achats);
       this.dataSource.paginator = this.paginator;
@@ -37,7 +37,7 @@ export class VenteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.venteService.update$.subscribe(()=>{
+    this.achatService.update$.subscribe(()=>{
       this.chargerVente();
     })
   }
@@ -59,14 +59,14 @@ export class VenteComponent implements OnInit {
       confirmButtonText: 'Oui, je veux supprimer!',
     }).then((result) => {
       if (result.value) {
-        this.venteService.deleteAchat(idAchat).subscribe(
+        this.achatService.deleteAchat(idAchat).subscribe(
       (result) => {
         console.log(result);
-        this.venteService.triggerupdate();
+        this.achatService.triggerupdate();
       }
           );
           console.log("idAchat ", idAchat);
-          this.venteService.triggerupdate();
+          this.achatService.triggerupdate();
         this.chargerVente();
         Swal.fire(
           'Supprimer!',

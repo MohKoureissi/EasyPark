@@ -7,9 +7,11 @@ import { LocationVoitureComponent } from 'app/location-voiture/location-voiture.
 import { VenteComponent } from 'app/vente/vente.component';
 import { MaintenanceComponent } from 'app/maintenance/maintenance.component';
 import { LoginPageComponent } from 'app/login-page/login-page.component';
+import { AuthGardeService } from 'app/auth-garde.service';
 
 export const AdminLayoutRoutes: Routes = [
    
+    // canActivate, [AuthGardeService], 
      { path: 'login-page',     component: LoginPageComponent },
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },
