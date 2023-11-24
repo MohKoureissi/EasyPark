@@ -80,6 +80,7 @@ export class VoitureFormulaireComponent {
     this.serviceVoiture.createVoiture(newVoiture,this.image,this.image2,this.image3).subscribe(
       (response) => {
         console.log('Voiture créée avec succès :', response);
+        this.serviceVoiture.triggerupdate();
         // Faites quelque chose avec la réponse ici
       },
       (error) => {

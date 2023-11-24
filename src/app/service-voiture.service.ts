@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,13 @@ export class ServiceVoitureService {
   private apiUrl = 'http://localhost:8080/voiture'
 
   constructor(private http: HttpClient) { }
+
+  private updateEvent = new Subject<void>();
+  update$ = this.updateEvent.asObservable();
+
+  triggerupdate(){
+  this.updateEvent.next();
+}
 
   //Creation
   createVoiture(voiture: any, photo2?: File, photo3?: File, photo4?: File): Observable<any> {
@@ -28,8 +35,8 @@ export class ServiceVoitureService {
   getVoitureById(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/read/${id}`);
   }
-  deleteVoiture(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/delete/${id}`);
+  deleteVoiture(idVoiture: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/delete/${idVoiture}`);
   }
 
   // Modification

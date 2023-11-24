@@ -37,14 +37,14 @@ export class Sidebar2Component implements OnInit {
       return true;
   };
 
-  // isLoginPage: boolean = false;
+  //  isLoginPage: boolean = false;
   isBlankPage : boolean = false;
 
   constructor(private router: Router){
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.isBlankPage = event.url === '/';
-        // this.isLoginPage = event.url.endsWith('login-page') || event.url === '/login';
+        //  this.isLoginPage = event.url.endsWith('login-page') || event.url === '/login';
       }
     });
   }

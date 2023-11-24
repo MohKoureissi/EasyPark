@@ -6,6 +6,7 @@ import { VenteFormulaireComponent } from 'app/vente-formulaire/vente-formulaire.
 import { Achat } from 'app/model/achat';
 import { MatSort } from '@angular/material/sort';
 import { VenteServiceService } from 'app/vente-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-vente',
@@ -15,7 +16,7 @@ import { VenteServiceService } from 'app/vente-service.service';
   imports: [MatTableModule, MatPaginatorModule],
 })
 export class VenteComponent implements OnInit {
-  displayedColumns: string[] = ['idAchat', 'voiture', 'client','prix' ,'dateAchat'];
+  displayedColumns: string[] = ['idAchat', 'voiture', 'client','prix' ,'dateAchat', 'action'];
   dataSource = new MatTableDataSource<Achat>();
   achats: Achat[] = [];
  
@@ -23,11 +24,10 @@ export class VenteComponent implements OnInit {
     @ViewChild(MatSort ) sort!: MatSort;
   constructor(private venteService: VenteServiceService ,private dialogRef: MatDialog) {
     
-   
-    this.dataSource = new MatTableDataSource(this.achats);
+    this.chargerVente();
+    // this.dataSource = new MatTableDataSource(this.achats);
   }
-
-  ngOnInit(): void {
+  chargerVente(){
     this.venteService.getAllAchats().subscribe(achat => {
       this.achats = achat;
       this.dataSource = new MatTableDataSource(this.achats);
@@ -35,10 +35,55 @@ export class VenteComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
   }
+
+  ngOnInit(): void {
+    this.venteService.update$.subscribe(()=>{
+      this.chargerVente();
+    })
+  }
     openDialog() {
       const dialog = this.dialogRef.open(VenteFormulaireComponent, {
         width: '400px',
       })
    }
+
+   delete(idAchat:number){
+    Swal.fire({
+      title: 'Etes vous sûr ?',
+      text: "Voulez - vous supprimer!!",
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText:'Annuler',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, je veux supprimer!',
+    }).then((result) => {
+      if (result.value) {
+        this.venteService.deleteAchat(idAchat).subscribe(
+      (result) => {
+        console.log(result);
+        this.venteService.triggerupdate();
+      }
+          );
+          console.log("idAchat ", idAchat);
+          this.venteService.triggerupdate();
+        this.chargerVente();
+        Swal.fire(
+          'Supprimer!',
+          'Suppression avec succès.',
+          'success'
+          )
+        }
+      else{
+        Swal.fire(
+          'Suppression annulée!',
+          'Cette suppresion a été annulée.',
+          'error'
+        )
+      }
+    });
+    // this.chargerData();
+  
+  }
 
 }

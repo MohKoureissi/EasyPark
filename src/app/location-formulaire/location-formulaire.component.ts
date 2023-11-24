@@ -59,6 +59,7 @@ export class LocationFormulaireComponent {
     this.locationService.createLocation(newVente).subscribe(
       (response) => {
         console.log('Vente ajouter avec succès :', response);
+        this.locationService.triggerupdate();
         // Faites quelque chose avec la réponse ici
       },
       (error) => {

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,13 @@ export class MaintenanceService {
     private apiUrl = 'http://localhost:8080/maintenance'; // Remplacez cela par votre URL
   
     constructor(private http: HttpClient) {}
+
+    private updateEvent = new Subject<void>();
+    update$ = this.updateEvent.asObservable();
+
+  triggerupdate(){
+    this.updateEvent.next();
+  }
   
     createMaintenance(maintenance: any): Observable<any> {
       return this.http.post<any>(`${this.apiUrl}/create`, maintenance);

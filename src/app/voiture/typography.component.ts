@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Voiture } from 'app/model/voiture';
 import { ServiceVoitureService } from 'app/service-voiture.service';
 import { VoitureFormulaireComponent } from 'app/voiture-formulaire/voiture-formulaire.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-typography',
@@ -17,28 +18,66 @@ export class TypographyComponent  {
   // dataSource = new MatTableDataSource<Voiture>();
   voitures: Voiture[] = [];
  
-    // @ViewChild(MatPaginator) paginator!: MatPaginator;
-    // @ViewChild(MatSort ) sort!: MatSort;
   constructor(private voitureService: ServiceVoitureService ,private dialogRef: MatDialog) {
-    
-   
-    // this.dataSource = new MatTableDataSource(this.achats);
+    this.chargerVoiture();
   }
 
   ngOnInit(): void {
+    this.voitureService.update$.subscribe(voiture => {
+      this.chargerVoiture();
+    });
+  }
+
+
+  chargerVoiture(): void {
     this.voitureService.getAllVoitures().subscribe(voiture => {
       this.voitures = voiture;
-      // this.dataSource = new MatTableDataSource(this.achats);
-      // this.dataSource.paginator = this.paginator;
-      // this.dataSource.sort = this.sort;
     });
-
   }
   openDialog(){
     const dialog = this.dialogRef.open(VoitureFormulaireComponent, {
       width:'520px',
      
     })
+  }
+
+  delete(idVoiture:number){
+    Swal.fire({
+      title: 'Etes vous sûr ?',
+      text: "Voulez - vous supprimer!!",
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText:'Annuler',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, je veux supprimer!',
+    }).then((result) => {
+      if (result.value) {
+        this.voitureService.deleteVoiture(idVoiture).subscribe(
+      (result) => {
+        console.log(result);
+        this.voitureService.triggerupdate();
+      }
+          );
+          console.log("idVoiture ", idVoiture);
+          this.voitureService.triggerupdate();
+        this.chargerVoiture();
+        Swal.fire(
+          'Supprimer!',
+          'Suppression avec succès.',
+          'success'
+          )
+        }
+      else{
+        Swal.fire(
+          'Suppression annulée!',
+          'Cette suppresion a été annulée.',
+          'error'
+        )
+      }
+    });
+    // this.chargerData();
+
   }
 
   }

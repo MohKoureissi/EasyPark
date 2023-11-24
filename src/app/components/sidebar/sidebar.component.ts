@@ -25,14 +25,14 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems: any[];
 
-  // isLoginPage: boolean = false;
-  // isBlankPage : boolean = false;
+  //  isLoginPage: boolean = false;
+   isBlankPage : boolean = false;
 
   constructor(private router: Router){
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // this.isBlankPage = event.url === '/';
-        // this.isLoginPage = event.url.endsWith('login-page') || event.url === '/login';
+         this.isBlankPage = event.url === '/';
+        //  this.isLoginPage = event.url.endsWith('login-page') || event.url === '/login';
       }
     });
   }

@@ -53,6 +53,7 @@ export class MaintenanceFormulaireComponent implements OnInit{
       this.mainteService.createMaintenance(newMaintenance).subscribe(
         (response) => {
           console.log('Maintenance ajouter avec succès :', response);
+          this.mainteService.triggerupdate();
           // Faites quelque chose avec la réponse ici
         },
         (error) => {

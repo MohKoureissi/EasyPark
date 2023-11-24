@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,13 @@ export class LocationService {
   private baseUrl = 'http://localhost:8080/location';
 
   constructor(private http: HttpClient) { }
+
+  private updateEvent = new Subject<void>();
+    update$ = this.updateEvent.asObservable();
+
+  triggerupdate(){
+    this.updateEvent.next();
+  }
 
   createLocation(location: Location): Observable<Location> {
     return this.http.post<Location>(`${this.baseUrl}/create`, location);

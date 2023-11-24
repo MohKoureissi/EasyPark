@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Achat } from './model/achat';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,13 @@ export class VenteServiceService {
   private apiUrl = 'http://localhost:8080/achat';
 
   constructor(private http: HttpClient) {}
+
+  private updateEvent = new Subject<void>();
+  update$ = this.updateEvent.asObservable();
+
+triggerupdate(){
+  this.updateEvent.next();
+}
 
   createAchat(achat: Achat): Observable<Achat> {
     return this.http.post<Achat>(`${this.apiUrl}/create`, achat);
