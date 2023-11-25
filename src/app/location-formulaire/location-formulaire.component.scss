@@ -81,6 +81,19 @@ cursor: pointer;
 border-radius: 8px;
 transition: background-color 0.3s;
 }
+
+.annuler{
+  gap : 8px;
+align-items : center;
+background-color: rgb(228, 20, 20);
+color: #fff;
+margin-left: 100px;
+width: 120px;
+}
+.annuler:hover{
+  background-color: gray;
+}
+
 button:first-child {
 margin-right: 5px;
 }
@@ -90,15 +103,17 @@ margin-left: 5px;
 } 
 
 button:hover {
-background-color: #CCCE32;
+background-color: #308D89;
 }
 
 
 
 .form-container {
-justify-content: space-around;
+justify-content: center;
+align-items: center;
 width: 100%;
-margin-bottom: 16px;
+margin-bottom: 1px;
+display: grid;
 }
 
 .input-container {

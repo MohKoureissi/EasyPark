@@ -7,7 +7,7 @@
     Nouvelle Location</h3>
     <div class="formulare">
       <form [formGroup]="locationForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" >
-          <div class="form-container" style="margin-left: 70px;">
+          <div class="form-container" >
             <!-- 1ere Ligne -->
             <div class="input-container" >
               <div class="input-desc">
@@ -20,7 +20,7 @@
             <div class="input-container" >
               <div class="input-desc">
                 <select name="client" id="client" formControlName="client">
-                  <option value="" placeholder="Selectionner la voiture">Sélectionnez la voiture</option>
+                  <option value="" placeholder="Selectionner la voiture">Sélectionnez le client</option>
                   <option *ngFor="let client of clientSelect" [ngValue]="client">{{ client.nom}}</option>
                </select>
               </div>
@@ -31,16 +31,18 @@
                 <input type="number" id="prix" formControlName="prix" placeholder="Prix"  required >
               </div>
             </div>
-            <div class="input-container" ></div>
+            <div class="input-container" >
             <div class="input-field">
               <input type="text" id="duree" formControlName="duree" placeholder="Duree"  required >
             </div>
-            <div class="input-container" ></div>
+          </div>
+            <div class="input-container" >
             <div class="input-field">
               <input type="date" id="datelocation" formControlName="dateLocation" placeholder="Date"  required >
             </div>
           </div>
-            <div mat-dialog-actions class="actions">
+          </div>
+            <div  class="actions">
               <button  (click)="onNoClick()" mat-button mat-dialog-close><i class='bx bx-x'></i> Annuler</button>
               <button  (click)="onNoClick()" mat-raised-button color="primary" type="submit" [disabled]="!locationForm.valid"> <i class='bx bx-check'></i>{{ data ? "Modifier" : "Ajouter" }}</button>
             </div> 
