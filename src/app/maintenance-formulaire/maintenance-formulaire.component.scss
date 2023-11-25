@@ -63,18 +63,28 @@ border: none;
 padding: 5px 10px;
 cursor: pointer;
 border-radius: 8px;
+width: 110px;
 transition: background-color 0.3s;
 }
 button:first-child {
   margin-right: 5px;
 }
 
+.actions{
+  background-color: red;
+  width: 110px;
+  color: white;
+  margin-left: 100px;
+}
+.actions:hover {
+  background-color: #308D89;
+}
 button:last-child {
   margin-left: 5px;
 } 
 
 button:hover {
-  background-color: #CCCE32;
+  background-color: #308D89;
 }
 
 

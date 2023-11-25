@@ -28,12 +28,12 @@
           </div>
             <div class="input-container" >
             <div class="input-field">
-              <input type="text" id="description" formControlName="description" placeholder="Description"  required >
+              <input type="text" id="description" formControlName="description" placeholder="Description" style="height: 5rem;" required >
             </div>
           </div>
           </div>
-            <div mat-dialog-actions class="actions">
-              <button  (click)="onNoClick()" mat-button mat-dialog-close><i class='bx bx-x'></i> Annuler</button>
+            <div style="display: flex; align-items: center; justify-content: center;margin-left: 100px;">
+              <button class="actions"  (click)="onNoClick()" mat-button mat-dialog-close><i class='bx bx-x'></i> Annuler</button>
               <button   (click)="onNoClick()" mat-raised-button color="primary" type="submit" [disabled]="!maintenanceForm.valid"> <i class='bx bx-check'></i>{{ data ? "Modifier" : "Ajouter" }}</button>
             </div> 
         </form>
