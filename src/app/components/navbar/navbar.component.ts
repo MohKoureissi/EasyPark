@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
 
+    isBlankPage: boolean = false
     isLoginPage:boolean = false;
 
     constructor(location: Location,  private element: ElementRef, private router: Router) {
@@ -22,7 +23,7 @@ export class NavbarComponent implements OnInit {
           this.sidebarVisible = false;
           this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
-            //    this.isBlankPage = event.url === '/';
+               this.isBlankPage = event.url === '/';
                this.isLoginPage = event.url.endsWith('login-page') || event.url === '/login';
             }
           });
