@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar2/sidebar2.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 
 @Component({
@@ -11,15 +11,26 @@ import { Router } from '@angular/router';
 })
 export class Navbar2Component implements OnInit {
 
+
   private listTitles: { path: string, title: string }[];
   location: Location;
     mobile_menu_visible: any = 0;
   private toggleButton: any;
   private sidebar2Visible: boolean;
 
+  isInscription: boolean = false;
+  isBlankPage: boolean = false
+  isLoginPage:boolean = false;
   constructor(location: Location,  private element: ElementRef, private router: Router) {
     this.location = location;
         this.sidebar2Visible = false;
+        this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+               this.isBlankPage = event.url === '/';
+               this.isLoginPage = event.url.endsWith('login-page') || event.url === '/login';
+               this.isInscription = event.url.endsWith('inscription') || event.url === '/isInscription';
+            }
+          });
   }
 
   ngOnInit(){

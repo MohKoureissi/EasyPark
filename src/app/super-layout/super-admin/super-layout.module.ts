@@ -13,6 +13,7 @@ import { SuperAdminRoutes } from './super-layout.routing';
 import { ParkingActifComponent } from 'app/parking-actif/parking-actif.component';
 import { ParkingInactifComponent } from 'app/parking-inactif/parking-inactif.component';
 import { UtilisateursComponent } from 'app/utilisateurs/utilisateurs.component';
+import { DashboardSuperAdminComponent } from 'app/dashboard-super-admin/dashboard-super-admin.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,7 @@ import { UtilisateursComponent } from 'app/utilisateurs/utilisateurs.component';
     MatTooltipModule,
   ],
   declarations: [
-    NotificationsComponent,
+    NotificationsComponent, 
   ]
 })
 

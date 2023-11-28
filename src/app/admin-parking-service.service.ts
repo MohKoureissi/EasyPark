@@ -19,11 +19,11 @@ export class AdminParkingServiceService {
     this.updateEvent.next();
   }
 
-  createAdminParking(adminParking: AdminParking, agrement: File): Observable<AdminParking> {
+  createAdminParking(adminParking: AdminParking, agrementParking: File): Observable<AdminParking> {
     const formData: FormData = new FormData();
     formData.append('adminParking', JSON.stringify(adminParking));
-    if (agrement) {
-      formData.append('agrement', agrement, agrement.name);
+    if (agrementParking) {
+      formData.append('agrement', agrementParking, agrementParking.name);
     }
 
     return this.http.post<AdminParking>(`${this.baseUrl}/create`, formData);

@@ -22,8 +22,6 @@ import { SuperAdminComponent } from './super-layout/super-admin/super-admin.comp
 import { DashboardSuperAdminComponent } from './dashboard-super-admin/dashboard-super-admin.component';
 import { ParkingActifComponent } from './parking-actif/parking-actif.component';
 import { ParkingInactifComponent } from './parking-inactif/parking-inactif.component';
-import { ActifFormulaireComponent } from './actif-formulaire/actif-formulaire.component';
-import { SuspendreFormulaireComponent } from './suspendre-formulaire/suspendre-formulaire.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LocationService } from './location.service';
 import { InscriptionComponent } from './inscription/inscription.component';
@@ -51,8 +49,6 @@ import { InscriptionComponent } from './inscription/inscription.component';
     AppComponent,
     AdminLayoutComponent,
     SuperAdminComponent,
-    ActifFormulaireComponent,
-    SuspendreFormulaireComponent,
    
     
   ],

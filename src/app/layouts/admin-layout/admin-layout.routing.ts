@@ -8,12 +8,15 @@ import { VenteComponent } from 'app/vente/vente.component';
 import { MaintenanceComponent } from 'app/maintenance/maintenance.component';
 import { LoginPageComponent } from 'app/login-page/login-page.component';
 import { AuthGardeService } from 'app/auth-garde.service';
+import { Component } from '@angular/core';
+import { InscriptionComponent } from 'app/inscription/inscription.component';
 
 export const AdminLayoutRoutes: Routes = [
    
     // canActivate, [AuthGardeService], 
-     { path: 'login-page',     component: LoginPageComponent },
+    { path: 'login-page',     component: LoginPageComponent },
     { path: 'dashboard',      component: DashboardComponent },
+    { path: 'inscription',   component: InscriptionComponent},
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'vente',     component: VenteComponent },
     { path: 'typography',     component: TypographyComponent },

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="formulaire">
-        <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" >
+        <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" >
         <div class="input-container" >
             <div class="input-field">
               <input type="text" id="nomPrenom" formControlName="nomPrenom" placeholder="Nom Prenom"  required >

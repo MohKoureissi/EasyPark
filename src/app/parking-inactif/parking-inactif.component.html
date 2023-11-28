@@ -42,7 +42,7 @@
                               </ng-container>
                             <ng-container matColumnDef="agrement">
                                 <th mat-header-cell *matHeaderCellDef> Agrement Parking </th>
-                                <td mat-cell *matCellDef="let element"> {{element.agrement}} </td>
+                                <td mat-cell *matCellDef="let element"> <img [src]="element.agrementParking" class="card-img-top" alt="..." style=" height: 190px;"> </td>
                               </ng-container>
                         <ng-container matColumnDef="action">
                             <th mat-header-cell *matHeaderCellDef> Action </th>

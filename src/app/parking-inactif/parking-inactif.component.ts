@@ -58,12 +58,12 @@ applyFilter(event: Event) {
 
   onDesActivate(idAdminParking: number){
     Swal.fire({
-      title: 'Êtes-vous sûr de vouloir de desactiver?',
-      text: 'Il ne pourra plus acceder à la plateforme !',
-      icon: 'warning',
+      title: 'Êtes-vous sûr de vouloir activer ce Parking?',
+      text: 'Il pourra desormais acceder à la plateforme !',
+      icon: 'success',
       showCancelButton: true,
-      confirmButtonText: 'Oui, desactive-le !',
-      cancelButtonText: 'Non, garde-le'
+      confirmButtonText: 'Oui, active-le !',
+      cancelButtonText: 'Non, ne pas lui activer'
       }).then((result) => {
         if (result.value) {
           this.chargerDonner();

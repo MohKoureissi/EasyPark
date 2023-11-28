@@ -1,6 +1,6 @@
 import { Component,Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+// import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AdminParkingServiceService } from 'app/admin-parking-service.service';
 @Component({
   selector: 'app-inscription',
@@ -10,8 +10,8 @@ import { AdminParkingServiceService } from 'app/admin-parking-service.service';
 export class InscriptionComponent {
 
   adminForm!:FormGroup;
-  agrement!: File;
-  constructor(private fb:FormBuilder,private adminService: AdminParkingServiceService,  @Inject(MAT_DIALOG_DATA) public data: any){
+  agrementParking!: File;
+  constructor(private fb:FormBuilder,private adminService: AdminParkingServiceService){
     this.adminForm= this.fb.group({
       nomPrenom:['', Validators.required],
       email:['', Validators.required],
@@ -22,20 +22,20 @@ export class InscriptionComponent {
     })
   }
   ImageChange(event: any) {
-    this.agrement = event.target.files[0];
-    console.log(this.agrement);
+    this.agrementParking = event.target.files[0];
+    console.log(this.agrementParking);
   }
 
   onSubmit() {
     console.log("test1");
-    if(this.adminForm.valid &&  this.agrement){
+    if(this.adminForm.valid ){
       console.log("test2");
       // if(this.data){
         // console.log("test3");
 
     const newAdminParking= this.adminForm.value;
     console.log(newAdminParking);
-    this.adminService.createAdminParking(newAdminParking,this.agrement).subscribe(
+    this.adminService.createAdminParking(newAdminParking,this.agrementParking).subscribe(
       (response) => {
         console.log('AdminParking inscrit avec succès :', response);
         // Faites quelque chose avec la réponse ici
