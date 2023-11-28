@@ -18,7 +18,7 @@
         <div class="input-container" >
           <div class="input-desc">
             <select name="client" id="client" formControlName="client">
-              <option value="" placeholder="Selectionner la voiture">Sélectionnez la voiture</option>
+              <option value="" placeholder="Selectionner la voiture">Sélectionnez le client</option>
               <option *ngFor="let client of clientSelect" [ngValue]="client">{{ client.nom}}</option>
            </select>
           </div>
@@ -29,13 +29,14 @@
             <input type="number" id="prix" formControlName="prix" placeholder="Prix"  required >
           </div>
         </div>
-        <div class="input-container" ></div>
+        <div class="input-container" >
         <div class="input-field">
           <input type="date" id="dateAchat" formControlName="dateAchat" placeholder="Date"  required >
         </div>
       </div>
-        <div mat-dialog-actions class="actions">
-          <button  (click)="onNoClick()" mat-button mat-dialog-close><i class='bx bx-x'></i> Annuler</button>
+      </div>
+        <div  class="actions">
+          <button class="annuler"  (click)="onNoClick()" mat-button mat-dialog-close><i class='bx bx-x'></i> Annuler</button>
           <button   (click)="onNoClick()" mat-raised-button color="primary" type="submit" [disabled]="!venteForm.valid"> <i class='bx bx-check'></i>{{ data ? "Modifier" : "Ajouter" }}</button>
         </div> 
      

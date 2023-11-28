@@ -36,24 +36,11 @@ export class VoitureFormulaireComponent {
       photo4:['', Validators.required],
       quantite:['', Validators.required],
       type:['', Validators.required],
+      puissance:['', Validators.required],
       prix:['', Validators.required],
       adminParking: this.adminRecup,
     })
   }
-  // voitureArr: any[]= [];
-  // voiture: any={
-  //   marque:'',
-  //   modele:'',
-  //   anneeSortie:'',
-  //   photo2:'',
-  //   photo3:'',
-  //   photo4:'',
-  //   quantite:'',
-  //   type:'',
-  //   prix:''
-  // }
-  // ngOnInit(): void {
-  // }
   ImageChange(event: any) {
     this.image = event.target.files[0];
     console.log(this.image);

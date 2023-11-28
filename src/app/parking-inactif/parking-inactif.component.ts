@@ -23,30 +23,29 @@ export class ParkingInactifComponent {
   @ViewChild(MatSort ) sort!: MatSort;
 
   constructor(private adminParking :AdminParkingServiceService){
-    this.dataSource= new MatTableDataSource(this.admin)
+    this.dataSource= new MatTableDataSource(this.admin);
+    this.chargerDonner();
   }
 
   ngAfterViewInit() {  
     this.dataSource.paginator = this.paginator;
   }
 
-  ngOnInit(): void {
+  chargerDonner(){
     this.adminParking.getAllAdminParking().subscribe(admins=>{
-    this.admin = admins.filter(admin => admin.acces=== false);
-    this.dataSource = new MatTableDataSource(this.admin);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-});
+      this.admin = admins.filter(admin => admin.acces=== false);
+      this.dataSource = new MatTableDataSource(this.admin);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+  });
+  }
+  ngOnInit(): void {
+   this.adminParking.update$.subscribe(() =>{
+    this.chargerDonner();
+   })
 }
 
-chargerDonner(){
-this.adminParking.getAllAdminParking().subscribe(admins=>{
-  this.admin = admins.filter(admin => admin.acces=== false);
-  this.dataSource = new MatTableDataSource(this.admin);
-  this.dataSource.paginator = this.paginator;
-  this.dataSource.sort = this.sort;
-});
-}
+
 applyFilter(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value;
   this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -69,6 +68,7 @@ applyFilter(event: Event) {
         if (result.value) {
           this.chargerDonner();
           this.adminParking.changeAccess(idAdminParking).subscribe();
+          this.adminParking.triggerupdate();
           this.chargerDonner();
           Swal.fire(
             'Desactivation!',
