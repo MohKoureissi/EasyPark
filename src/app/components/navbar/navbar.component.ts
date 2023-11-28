@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -15,9 +15,17 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
 
+    isLoginPage:boolean = false;
+
     constructor(location: Location,  private element: ElementRef, private router: Router) {
       this.location = location;
           this.sidebarVisible = false;
+          this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+            //    this.isBlankPage = event.url === '/';
+               this.isLoginPage = event.url.endsWith('login-page') || event.url === '/login';
+            }
+          });
     }
 
     ngOnInit(){

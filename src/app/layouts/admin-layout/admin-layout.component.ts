@@ -15,7 +15,17 @@ export class AdminLayoutComponent implements OnInit {
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
 
-  constructor( public location: Location, private router: Router) {}
+   isBlankPage : boolean = false;
+   isLoginPage : boolean = false;
+
+  constructor( public location: Location, private router: Router) {
+    this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+           this.isBlankPage = event.url === '/';
+           this.isLoginPage = event.url.endsWith('login-page') || event.url === '/login';
+        }
+      });
+  }
 
   ngOnInit() {
       const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
