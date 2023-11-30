@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { Maintenance } from './model/maintenance';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,12 @@ export class MaintenanceService {
     createMaintenance(maintenance: any): Observable<any> {
       return this.http.post<any>(`${this.apiUrl}/create`, maintenance);
     }
+
+    //Liste des voitures a travers idAdminParking qui la ajouter
+    listerVoiture(idAdminParking: number): Observable<Maintenance[]> {
+      return this.http.get<Maintenance[]>(`${this.apiUrl}/list/${idAdminParking}`);
+    }
+  
   
     getAllMaintenances(): Observable<any[]> {
       return this.http.get<any[]>(`${this.apiUrl}/read`);

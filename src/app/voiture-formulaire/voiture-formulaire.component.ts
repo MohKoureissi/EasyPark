@@ -18,14 +18,14 @@ export class VoitureFormulaireComponent {
   image!: File;
   image2!:File;
   image3!:File;
-  adminRecup: AdminParking | undefined;
+  adminParking: AdminParking | any;
  
 
   constructor(private fb:FormBuilder, private serviceVoiture: ServiceVoitureService ,private authService: AuthServiceService  ,public dialogRef: MatDialogRef<VoitureFormulaireComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any){
 
-      this.adminRecup = this.authService.getAdminConnecte();
-      console.log("Admin recup dans guide ", this.adminRecup);
+      this.adminParking = JSON.parse(localStorage.getItem('idAdminParking')!);
+      console.log("Admin Récuperer ", this.adminParking);
 
     this.voitureForm = this.fb.group({
       marque:['', Validators.required],
@@ -38,7 +38,7 @@ export class VoitureFormulaireComponent {
       type:['', Validators.required],
       puissance:['', Validators.required],
       prix:['', Validators.required],
-      adminParking: this.adminRecup,
+      adminParking: this.adminParking,
     })
   }
   ImageChange(event: any) {

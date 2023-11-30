@@ -18,6 +18,7 @@ export class ParkingInactifComponent {
   displayedColumns: string[] = ['nomPrenom', 'nomParking', 'email','adresseParking','agrement','action'];
   dataSource = new MatTableDataSource<AdminParking>();
   admin:AdminParking[]=[];
+  nbrInactif: number;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort ) sort!: MatSort;
@@ -37,6 +38,7 @@ export class ParkingInactifComponent {
       this.dataSource = new MatTableDataSource(this.admin);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.nbrInactif = this.admin.length
   });
   }
   ngOnInit(): void {
@@ -59,7 +61,7 @@ applyFilter(event: Event) {
   onDesActivate(idAdminParking: number){
     Swal.fire({
       title: 'Êtes-vous sûr de vouloir activer ce Parking?',
-      text: 'Il pourra desormais acceder à la plateforme !',
+      text: 'Il pourra maintenant acceder à la plateforme !',
       icon: 'success',
       showCancelButton: true,
       confirmButtonText: 'Oui, active-le !',

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { Voiture } from './model/voiture';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,17 @@ export class ServiceVoitureService {
     if (photo4) formData.append('photo4', photo4);
 
     return this.http.post(`${this.apiUrl}/create`, formData);
+  }
+
+   // Appeler l'endpoint pour obtenir le nombre de voitures
+   getNombreVoitures(): Observable<number> {
+    const url = `${this.apiUrl}/voiture/nbr`;
+    return this.http.get<number>(url);
+  }
+
+  //Liste des voitures a travers idAdminParking qui la ajouter
+  listerVoiture(idAdminParking: number): Observable<Voiture[]> {
+    return this.http.get<Voiture[]>(`${this.apiUrl}/list/${idAdminParking}`);
   }
 
   getAllVoitures(): Observable<any> {

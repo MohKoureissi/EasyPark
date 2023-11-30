@@ -1,5 +1,4 @@
 
-import * as Chartist from 'chartist';
 import {AfterViewInit, Component,OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';

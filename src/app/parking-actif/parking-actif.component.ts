@@ -19,6 +19,7 @@ export class ParkingActifComponent {
   displayedColumns: string[] = [ 'nomPrenom', 'nomParking', 'email','adresseParking','agrement','action'];
   dataSource = new MatTableDataSource<AdminParking>();
   admin:AdminParking[]=[];
+  nbrad: number;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort ) sort!: MatSort;
@@ -36,6 +37,7 @@ export class ParkingActifComponent {
    this.adminParking.update$.subscribe(() =>{
     this.chargerDonner();
    })
+  
 }
 
 chargerDonner(){
@@ -44,6 +46,8 @@ this.adminParking.getAllAdminParking().subscribe(admins=>{
   this.dataSource = new MatTableDataSource(this.admin);
   this.dataSource.paginator = this.paginator;
   this.dataSource.sort = this.sort;
+  this.nbrad = this.admin.length;
+
 });
 }
 applyFilter(event: Event) {

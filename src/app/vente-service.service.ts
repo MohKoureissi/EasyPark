@@ -22,6 +22,11 @@ triggerupdate(){
   createAchat(achat: Achat): Observable<Achat> {
     return this.http.post<Achat>(`${this.apiUrl}/create`, achat);
   }
+  
+  //Liste des ventes enregistrer par AdminParking 
+  listerVoiture(idAdminParking: number): Observable<Achat[]> {
+    return this.http.get<Achat[]>(`${this.apiUrl}/list/${idAdminParking}`);
+  }
 
   getAllAchats(): Observable<Achat[]> {
     return this.http.get<Achat[]>(`${this.apiUrl}/read`);

@@ -25,6 +25,11 @@ export class LocationService {
   getAllLocations(): Observable<Location[]> {
     return this.http.get<Location[]>(`${this.baseUrl}/read`);
   }
+  
+  //Liste des voitures a travers idAdminParking qui la ajouter
+  listerVoiture(idAdminParking: number): Observable<Location[]> {
+    return this.http.get<Location[]>(`${this.baseUrl}/list/${idAdminParking}`);
+  }
 
   getLocationById(idLocation: number): Observable<Location> {
     return this.http.get<Location>(`${this.baseUrl}/read/${idLocation}`);

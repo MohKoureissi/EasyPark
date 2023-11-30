@@ -3,6 +3,14 @@ import * as Chartist from 'chartist';
 import {AfterViewInit, Component,OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { ServiceVoitureService } from 'app/service-voiture.service';
+import { Voiture } from 'app/model/voiture';
+import { Achat } from 'app/model/achat';
+import { Maintenance } from 'app/model/maintenance';
+import { MaintenanceService } from 'app/maintenance.service';
+import { VenteServiceService } from 'app/vente-service.service';
+import { AdminParking } from 'app/model/adminParking';
+import { AuthServiceService } from 'app/auth-service.service';
 
 
 @Component({
@@ -14,7 +22,17 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 })
 export class DashboardComponent implements OnInit,AfterViewInit  {
   displayedColumns: string[] = ['id', 'nom', 'prenom', 'email'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
+  adminParking: AdminParking | any;
+  voitures: Voiture[]= [];
+  nbrVoiture: number;
+  revenus: Achat[]= [];
+  montantR: number;
+  maintenances: Maintenance[]= [];
+  maintenance: number;
+  dataSource = new MatTableDataSource<Voiture>();
+  dataSource2 = new MatTableDataSource<Achat>();
+  dataSource3 = new MatTableDataSource<Maintenance>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -22,8 +40,30 @@ export class DashboardComponent implements OnInit,AfterViewInit  {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor() { }
-  startAnimationForLineChart(chart){
+  constructor(private voitureService: ServiceVoitureService, private authService: AuthServiceService,private maintService: MaintenanceService, private revenu: VenteServiceService) {
+    this.adminParking = JSON.parse(localStorage.getItem('idAdminParking')!);
+    console.log("Admin recuperer ", this.adminParking);
+   }
+
+   chargerVoiture() {
+    const idAdminParking= this.adminParking;
+    console.log("keita id : ", this.adminParking)
+    this.voitureService.listerVoiture(idAdminParking).subscribe( voitures =>{
+      this.voitures= voitures;
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////--------------------------------Statistique--------------------------/////////////////////////////////////
+startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
       delays = 80;
@@ -79,16 +119,34 @@ export class DashboardComponent implements OnInit,AfterViewInit  {
 
       seq2 = 0;
   };
+////////////////////////////------------------Statistique-------------------///////////////////////////////////////
   ngOnInit() {
-      /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
+    // Voiture
+    this.authService.update$.subscribe(() =>{
+      this.adminParking= JSON.parse(localStorage.getItem('idAdminParking')!);
+    });
 
+    this.voitureService.update$.subscribe(()=>{
+        this.chargerVoiture();
+        this.nbrVoiture= this.voitures.length;
+      })
+
+
+
+
+
+
+
+
+
+
+//////////////-------------------------Statistique----------------------//////////////////////////////////
       const dataDailySalesChart: any = {
           labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
           series: [
               [12, 17, 7, 17, 23, 18, 38]
           ]
       };
-
      const optionsDailySalesChart: any = {
           lineSmooth: Chartist.Interpolation.cardinal({
               tension: 0
@@ -101,8 +159,6 @@ export class DashboardComponent implements OnInit,AfterViewInit  {
       var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
 
       this.startAnimationForLineChart(dailySalesChart);
-
-
       /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
 
       const dataCompletedTasksChart: any = {
@@ -125,11 +181,7 @@ export class DashboardComponent implements OnInit,AfterViewInit  {
 
       // start animation for the Completed Tasks Chart - Line Chart
       this.startAnimationForLineChart(completedTasksChart);
-
-
-
       /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
-
       var datawebsiteViewsChart = {
         labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
         series: [
@@ -162,20 +214,4 @@ export class DashboardComponent implements OnInit,AfterViewInit  {
   }
 
 }
-export interface PeriodicElement {
-  nom: string;
-  id: number;
-  prenom: string;
-  email: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, nom: 'Koureissi', prenom:'Mohamed', email: 'koureissi89@gmail.com'},
-  {id: 2, nom: 'Koureissi', prenom:'Mohamed', email: 'koureissi89@gmail.com'},
-  {id: 3, nom: 'Koureissi', prenom:'Mohamed', email: 'koureissi89@gmail.com'},
-  {id: 4, nom: 'Koureissi', prenom:'Mohamed', email: 'koureissi89@gmail.com'},
-  {id: 5, nom: 'Koureissi', prenom:'Mohamed', email: 'koureissi89@gmail.com'},
-  {id: 6, nom: 'Koureissi', prenom:'Mohamed', email: 'koureissi89@gmail.com'},
-  {id: 7, nom: 'Koureissi', prenom:'Mohamed', email: 'koureissi89@gmail.com'},
-  {id: 8, nom: 'Koureissi', prenom:'Mohamed', email: 'koureissi89@gmail.com'},
-];

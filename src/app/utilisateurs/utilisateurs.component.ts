@@ -16,6 +16,7 @@ export class UtilisateursComponent {
   displayedColumns: string[] = ['nom', 'prenom', 'adresse', 'email'];  
   dataSource = new MatTableDataSource<ClientModel>();
   users: ClientModel[] = [];
+  nbrUser: number;
  
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort ) sort!: MatSort;
@@ -31,6 +32,7 @@ export class UtilisateursComponent {
       this.dataSource = new MatTableDataSource(this.users);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.nbrUser= this.users.length;
     });
   }
 

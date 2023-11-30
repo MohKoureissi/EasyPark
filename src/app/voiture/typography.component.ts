@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { AuthServiceService } from 'app/auth-service.service';
+import { AdminParking } from 'app/model/adminParking';
 import { Voiture } from 'app/model/voiture';
 import { ServiceVoitureService } from 'app/service-voiture.service';
 import { VoitureFormulaireComponent } from 'app/voiture-formulaire/voiture-formulaire.component';
@@ -11,29 +12,37 @@ import Swal from 'sweetalert2';
   selector: 'app-typography',
   templateUrl: './typography.component.html',
   styleUrls: ['./typography.component.css'],
-  // imports: [MatButtonModule, MatDialogModule],
 })
 export class TypographyComponent  {
   displayedColumns: string[] = ['photo2', 'marque', 'modele','quantite'];
-  // dataSource = new MatTableDataSource<Voiture>();
-  voitures: Voiture[] = [];
+  voitures: Voiture[]|any;
+  adminParking: AdminParking | any;
  
-  constructor(private voitureService: ServiceVoitureService ,private dialogRef: MatDialog) {
+  constructor(private voitureService: ServiceVoitureService ,private dialogRef: MatDialog, private authService : AuthServiceService) {
+    this.adminParking = JSON.parse(localStorage.getItem('idAdminParking')!);
     this.chargerVoiture();
+    console.log("Admin recuperer ", this.adminParking);
   }
 
-  ngOnInit(): void {
-    this.voitureService.update$.subscribe(voiture => {
-      this.chargerVoiture();
+  ngOnInit() {
+    this.authService.update$.subscribe(() =>{
+      this.adminParking= JSON.parse(localStorage.getItem('idAdminParking')!);
+    });
+
+      this.voitureService.update$.subscribe(()=>{
+        this.chargerVoiture();
+      })
+    
+    }
+  
+  chargerVoiture() {
+    const idAdminParking= this.adminParking;
+    console.log("keita id : ", this.adminParking)
+    this.voitureService.listerVoiture(idAdminParking).subscribe( voitures =>{
+      this.voitures= voitures;
     });
   }
 
-
-  chargerVoiture(): void {
-    this.voitureService.getAllVoitures().subscribe(voiture => {
-      this.voitures = voiture;
-    });
-  }
   openDialog(){
     const dialog = this.dialogRef.open(VoitureFormulaireComponent, {
       width:'520px',

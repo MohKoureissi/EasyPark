@@ -31,7 +31,8 @@ export class LoginPageComponent {
         (response: any) => {
           const idAdminCon = response.idAdminParking; 
           console.log("ID de l'admin est :", idAdminCon)
-          localStorage.setItem('idAdminParking', idAdminCon); // stockage de l'admin connecté dans la session
+          localStorage.setItem('idAdminParking', idAdminCon);
+           // stockage de l'admin connecté dans la session
           this.authService.setAdminConnecte(response); 
           // console.log("Mise à jour confirmée", response.idAdminParking)
           console.log("connexion établie", response);
