@@ -7,6 +7,8 @@ import { LocationFormulaireComponent } from 'app/location-formulaire/location-fo
 import { MatSort } from '@angular/material/sort';
 import { LocationService } from 'app/location.service';
 import Swal from 'sweetalert2';
+import { AdminParking } from 'app/model/adminParking';
+import { AuthServiceService } from 'app/auth-service.service';
 
 @Component({
   selector: 'app-location-voiture',
@@ -19,10 +21,14 @@ export class LocationVoitureComponent implements OnInit {
   displayedColumns: string[] = ['idLocation', 'voiture', 'client','prix' ,'duree','dateLocation','action'];
   dataSource = new MatTableDataSource<Location>();
   locations: Location[] = [];
+  locationfiltrer: any= [];
+  adminParking: number;
  
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort ) sort!: MatSort;
-  constructor(private locationService: LocationService ,private dialogRef: MatDialog) {
+  constructor(private locationService: LocationService ,private dialogRef: MatDialog, private authService: AuthServiceService) {
+    this.adminParking = JSON.parse(localStorage.getItem('idAdminParking')!);
+    console.log("Admin recuperer efffff ", this.adminParking);
     
     // this.dataSource = new MatTableDataSource(this.locations);
     this.chargerLogation();
@@ -31,13 +37,20 @@ export class LocationVoitureComponent implements OnInit {
   ngOnInit(): void {
     this.locationService.update$.subscribe(()=>{
       this. chargerLogation();
-    })
+    });
+    this.authService.update$.subscribe(() =>{
+      this.adminParking= JSON.parse(localStorage.getItem('idAdminParking')!);
+    });
   }
 
   chargerLogation(){
     this.locationService.getAllLocations().subscribe(location => {
-      this.locations = location;
-      this.dataSource = new MatTableDataSource(this.locations);
+      // const donner = location.filter((data :any)=> data.location.voiture.adminParking.idAdminParking === this.adminParking)
+      //   console.log("date========", donner);
+      // this.locations = location;
+        this.locations = location.filter((data :any)=> data.voiture.adminParking.idAdminParking === this.adminParking)
+      this.locationfiltrer = this.locations
+      this.dataSource = new MatTableDataSource(this.locationfiltrer );
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
