@@ -24,9 +24,9 @@ triggerupdate(){
   }
   
   //Liste des ventes enregistrer par AdminParking 
-  listerVoiture(idAdminParking: number): Observable<Achat[]> {
-    return this.http.get<Achat[]>(`${this.apiUrl}/list/${idAdminParking}`);
-  }
+  // listerVoiture(idAdminParking: number): Observable<Achat[]> {
+  //   return this.http.get<Achat[]>(`${this.apiUrl}/list/${idAdminParking}`);
+  // }
 
   getAllAchats(): Observable<Achat[]> {
     return this.http.get<Achat[]>(`${this.apiUrl}/read`);

@@ -11,7 +11,7 @@
               <div class="input-desc">
                 <select name="voiture" id="voiture" formControlName="voiture">
                   <option value="" placeholder="Selectionner la voiture">Sélectionnez la voiture</option>
-                  <option *ngFor="let voiture of voitureSelect" [ngValue]="voiture">{{ voiture.marque }}</option>
+                  <option *ngFor="let voiture of voitureSelect" [ngValue]="voiture">{{ voiture.marque }} {{ voiture.modele }}</option>
                </select>
               </div>
             </div>

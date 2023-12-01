@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit,AfterViewInit  {
   revenus: Achat[]= [];
   montantR: number;
   maintenances: Maintenance[]= [];
-  maintenance: number;
+  maintenanceNbr: number;
   dataSource = new MatTableDataSource<Voiture>();
   dataSource2 = new MatTableDataSource<Achat>();
   dataSource3 = new MatTableDataSource<Maintenance>();
@@ -43,22 +43,11 @@ export class DashboardComponent implements OnInit,AfterViewInit  {
   constructor(private voitureService: ServiceVoitureService, private authService: AuthServiceService,private maintService: MaintenanceService, private revenu: VenteServiceService) {
     this.adminParking = JSON.parse(localStorage.getItem('idAdminParking')!);
     console.log("Admin recuperer ", this.adminParking);
+    this.chargerVoiture();
+    this.chargerMaintenance();
    }
 
-   chargerVoiture() {
-    const idAdminParking= this.adminParking;
-    console.log("keita id : ", this.adminParking)
-    this.voitureService.listerVoiture(idAdminParking).subscribe( voitures =>{
-      this.voitures= voitures;
-    });
-  }
-
-
-
-
-
-
-
+   
 
 
 
@@ -128,9 +117,11 @@ startAnimationForLineChart(chart){
 
     this.voitureService.update$.subscribe(()=>{
         this.chargerVoiture();
-        this.nbrVoiture= this.voitures.length;
+      });
+      this.maintService.update$.subscribe(()=>{
+        this.chargerMaintenance();
       })
-
+      this.chargerMaintenance();
 
 
 
@@ -211,6 +202,28 @@ startAnimationForLineChart(chart){
 
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
+  }
+
+  chargerVoiture() {
+    const idAdminParking= this.adminParking;
+    console.log("keita id : ", this.adminParking)
+    this.voitureService.listerVoiture(idAdminParking).subscribe( voitures =>{
+      this.voitures= voitures;
+      this.nbrVoiture= this.voitures.length 
+    });
+    
+    console.log("nbr voiture: ", this.nbrVoiture ) 
+  }
+  chargerMaintenance(){
+    this.maintService.getAllMaintenances().subscribe(maintenances => {
+     const data = this.maintenances.filter((data)=> data.voiture.adminParking.idAdminParking == this.adminParking)
+      this.maintenances = maintenances;
+      console.log("data= ", data);
+      // this.dataSource3 = new MatTableDataSource(this.maintenances);
+      this.maintenanceNbr= data.length
+      
+    });
+    console.log("nbr maintenance:" ,this.maintenanceNbr);
   }
 
 }

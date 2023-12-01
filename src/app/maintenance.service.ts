@@ -23,9 +23,9 @@ export class MaintenanceService {
     }
 
     //Liste des voitures a travers idAdminParking qui la ajouter
-    listerVoiture(idAdminParking: number): Observable<Maintenance[]> {
-      return this.http.get<Maintenance[]>(`${this.apiUrl}/list/${idAdminParking}`);
-    }
+    // listerVoiture(idAdminParking: number): Observable<Maintenance[]> {
+    //   return this.http.get<Maintenance[]>(`${this.apiUrl}/list/${idAdminParking}`);
+    // }
   
   
     getAllMaintenances(): Observable<any[]> {

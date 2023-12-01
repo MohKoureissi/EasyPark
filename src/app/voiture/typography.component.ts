@@ -36,6 +36,7 @@ export class TypographyComponent  {
     }
   
   chargerVoiture() {
+    this.adminParking= JSON.parse(localStorage.getItem('idAdminParking')!);
     const idAdminParking= this.adminParking;
     console.log("keita id : ", this.adminParking)
     this.voitureService.listerVoiture(idAdminParking).subscribe( voitures =>{

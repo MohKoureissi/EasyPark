@@ -145,7 +145,20 @@ export class AdminLayoutComponent implements OnInit {
   }
   ngAfterViewInit() {
       this.runOnRouteChange();
+      this.initPerfectScrollbar();
   }
+
+  private initPerfectScrollbar(): void {
+    if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
+        const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
+        const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
+
+        const psMainPanel = new PerfectScrollbar(elemMainPanel);
+        const psSidebar = new PerfectScrollbar(elemSidebar);
+
+        // Vous pouvez également mettre ces objets PerfectScrollbar dans une propriété de votre classe si vous avez besoin d'y accéder ailleurs.
+    }
+}
   isMaps(path){
       var titlee = this.location.prepareExternalUrl(this.location.path());
       titlee = titlee.slice( 1 );
@@ -162,6 +175,7 @@ export class AdminLayoutComponent implements OnInit {
       const ps = new PerfectScrollbar(elemMainPanel);
       ps.update();
     }
+    
   }
   isMac(): boolean {
       let bool = false;

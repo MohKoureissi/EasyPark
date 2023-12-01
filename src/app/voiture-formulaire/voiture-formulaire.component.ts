@@ -5,13 +5,14 @@ import { ServiceVoitureService } from 'app/service-voiture.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminParking } from 'app/model/adminParking';
 import { AuthServiceService } from 'app/auth-service.service';
+import { Voiture } from 'app/model/voiture';
 
 @Component({
   selector: 'app-voiture-formulaire',
   templateUrl: './voiture-formulaire.component.html',
   styleUrls: ['./voiture-formulaire.component.scss']
 })
-export class VoitureFormulaireComponent {
+export class VoitureFormulaireComponent implements OnInit {
 
  
   voitureForm!:FormGroup;
@@ -19,12 +20,13 @@ export class VoitureFormulaireComponent {
   image2!:File;
   image3!:File;
   adminParking: AdminParking | any;
+  voitures: Voiture[]= [];
  
 
   constructor(private fb:FormBuilder, private serviceVoiture: ServiceVoitureService ,private authService: AuthServiceService  ,public dialogRef: MatDialogRef<VoitureFormulaireComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any){
 
-      this.adminParking = JSON.parse(localStorage.getItem('idAdminParking')!);
+      this.adminParking = JSON.parse(localStorage.getItem('AdminParking')!);
       console.log("Admin Récuperer ", this.adminParking);
 
     this.voitureForm = this.fb.group({
@@ -54,7 +56,21 @@ export class VoitureFormulaireComponent {
     console.log(this.image3);
   }
 
+  ngOnInit() {
+    // Voiture
+    this.authService.update$.subscribe(() =>{
+      this.adminParking= JSON.parse(localStorage.getItem('idAdminParking')!);
+    });
+  }
 
+  chargerVoiture() {
+    this.adminParking= JSON.parse(localStorage.getItem('idAdminParking')!);
+    const idAdminParking= this.adminParking;
+    console.log("keita id : ", this.adminParking)
+    this.serviceVoiture.listerVoiture(idAdminParking).subscribe( voitures =>{
+      this.voitures= voitures;
+    });
+  }
   onSubmit() {
     console.log("test1");
     if(this.voitureForm.valid &&  this.image && this.image2 && this.image3){
