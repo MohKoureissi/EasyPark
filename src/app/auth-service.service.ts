@@ -31,7 +31,7 @@ export class AuthServiceService {
     this.admin1 = admin;
     console.log("setAdminConnecte", this.admin1);
 
-    // Stocker l'id de l'administrateur connecté dans le localStorage
+    // Stocker l-objet adminParkingconnecté dans le localStorage
     localStorage.setItem('AdminParking', JSON.stringify(admin)); // Utiliser 'idAdminParking' au lieu de 'idAdmin'
   }
 

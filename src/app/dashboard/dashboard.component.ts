@@ -11,6 +11,8 @@ import { MaintenanceService } from 'app/maintenance.service';
 import { VenteServiceService } from 'app/vente-service.service';
 import { AdminParking } from 'app/model/adminParking';
 import { AuthServiceService } from 'app/auth-service.service';
+import { ClientModel } from 'app/model/clientModel';
+import { ServiceClientService } from 'app/service-client.service';
 
 
 @Component({
@@ -21,7 +23,7 @@ import { AuthServiceService } from 'app/auth-service.service';
   imports: [MatTableModule, MatPaginatorModule],
 })
 export class DashboardComponent implements OnInit,AfterViewInit  {
-  displayedColumns: string[] = ['id', 'nom', 'prenom', 'email'];
+  displayedColumns: string[] = ['idClient', 'nom', 'prenom', 'email'];
 
   adminParking: AdminParking | any;
   voitures: Voiture[]= [];
@@ -31,8 +33,9 @@ export class DashboardComponent implements OnInit,AfterViewInit  {
   maintenances: Maintenance[]= [];
   maintenanceNbr: number;
   dataSource = new MatTableDataSource<Voiture>();
-  dataSource2 = new MatTableDataSource<Achat>();
+  dataSource2 = new MatTableDataSource<ClientModel>();
   dataSource3 = new MatTableDataSource<Maintenance>();
+  client: ClientModel[]=[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -40,11 +43,12 @@ export class DashboardComponent implements OnInit,AfterViewInit  {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private voitureService: ServiceVoitureService, private authService: AuthServiceService,private maintService: MaintenanceService, private revenu: VenteServiceService) {
+  constructor(private voitureService: ServiceVoitureService, private clientService: ServiceClientService, private authService: AuthServiceService,private maintService: MaintenanceService, private revenu: VenteServiceService) {
     this.adminParking = JSON.parse(localStorage.getItem('idAdminParking')!);
     console.log("Admin recuperer ", this.adminParking);
     this.chargerVoiture();
     this.chargerMaintenance();
+    this.dataSource2 = new MatTableDataSource(this.client)
    }
 
    
@@ -122,6 +126,11 @@ startAnimationForLineChart(chart){
         this.chargerMaintenance();
       })
       this.chargerMaintenance();
+      this.clientService.getAllClients().subscribe(clients =>{
+        this.client = clients;
+        this.dataSource2= new MatTableDataSource(this.client);
+        // this.nbrClt= this.client.length;
+       })
 
 
 

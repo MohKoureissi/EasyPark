@@ -38,6 +38,7 @@ export class InscriptionComponent {
     this.adminService.createAdminParking(newAdminParking,this.agrementParking).subscribe(
       (response) => {
         console.log('AdminParking inscrit avec succès :', response);
+        // this.router.navigate(['../dashboard']);
         // Faites quelque chose avec la réponse ici
       },
       (error) => {

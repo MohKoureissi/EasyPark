@@ -31,7 +31,7 @@
                       <div class="card-icon">
                           <i class="material-icons">construction</i>
                       </div>
-                      <h2 class="card-category" style="font-size: xx-large; font-weight: bold;">Maintenances</h2>
+                      <h2 class="card-category" style="font-size: x-large; font-weight: bold;">Maintenances</h2>
                       <h3 class="card-title" style="margin-bottom: 20px; margin-top: 5px;">{{maintenanceNbr}}
                       </h3>
                   </div>
@@ -48,10 +48,10 @@
                         <p class="card-category" style="font-size: large;">15/08/2023 - 2024</p>
                     </div>
                     <div class="card-body">
-                        <table mat-table [dataSource]="dataSource" >
-                      <ng-container matColumnDef="id">
+                        <table mat-table [dataSource]="dataSource2" >
+                      <ng-container matColumnDef="idClient">
                         <th mat-header-cell *matHeaderCellDef> ID </th>
-                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.idClient}} </td>
                       </ng-container>
                       <ng-container matColumnDef="nom">
                         <th mat-header-cell *matHeaderCellDef> Nom </th>
