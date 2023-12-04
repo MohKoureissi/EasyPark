@@ -92,11 +92,13 @@ button{
   width: 250px;
   font-size: 22px;
   color: #fff;
-  background: #202882;
+  background: #308D89;
   border: none;
   cursor: pointer;
   margin-top: 1rem;
   border-radius: 10px;
+  margin-left: 15px;
+  margin-bottom: 5px;
 }
 button:hover{
   transition: 25px 30px rgba(0,0,0,0.5);

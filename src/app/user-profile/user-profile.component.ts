@@ -8,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class UserProfileComponent implements OnInit {
 
   constructor() { }
+  // private router: Router
 
   ngOnInit() {
   }
 
+  deconnecter (){
+    localStorage.removeItem("idClient");
+    localStorage.clear();
+    // this.router.navigate(['/connexion']);
+    
+    }
 }

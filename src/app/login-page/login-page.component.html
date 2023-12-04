@@ -9,9 +9,10 @@
                        
                         <div class="partie-droite" style="width: 100%; background-color: white;padding-right:36px">
                             <div style="margin-top: 5%; justify-content: center; align-items: center;">
-                                <h2 style="text-align: center;">Connexion</h2>
+                                <img style="margin-left: 30%;margin-bottom: 10px;" src="../../assets/img/mon-logo.png" width="200px" height="80px" alt="...">
+                                <!-- <h2 style="text-align: center;margin-bottom: -2%;">Connexion</h2> -->
                             </div>
-                            <div class="formulaire" style="justify-content: center; align-items: center; padding-left: 8%;margin-top: -95px;">
+                            <div class="formulaire" style="justify-content: center; align-items: center; padding-left: 8%;margin-top: -150px;">
                                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="forme">
                                     <div class="input-field">
                                      <div>  <label for="Email" style="color: black; font-size: larger;">Email</label> </div> 
@@ -21,7 +22,7 @@
                                      <div>  <label for="Mot de Passe"  style="color: black; font-size: larger;">Mot de Passe</label></div> 
                                       <div> <input type="password" id="motdepasse" placeholder="12345678" formControlName="motdepasse" required ></div> 
                                       </div>
-                                      <div class="btn">
+                                      <div class="btn2">
                                         <button  type="submit">Se connecter</button>
                                     </div>
                                 </form>

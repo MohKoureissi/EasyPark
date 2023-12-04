@@ -17,7 +17,7 @@
                   <h5 class="card-title" style="font-weight: bold;">{{voiture.marque}} {{voiture.modele}}</h5>
                   <p class="card-text" style="font-size: large;">Quantité: {{voiture.quantite}}</p>
                   <div style="display: flex; align-items: center; justify-content: center;">
-                  <a style="margin-left: 10%; width: 70%; font-size: large;" href="#" class="btn">Details  </a>
+                  <a   (click)="openModifierDialog(voiture.idVoiture)"  style="margin-left: 10%; width: 70%; font-size: large;    background-color: rgba(0, 0, 0, 0.2); color: black;"class="btn">Details  </a>
                   <i class="material-icons" style="color: red; cursor: pointer;"  (click)="delete(voiture.idVoiture)">delete</i>
                 </div>
                 </div>

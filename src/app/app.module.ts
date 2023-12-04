@@ -25,6 +25,7 @@ import { ParkingInactifComponent } from './parking-inactif/parking-inactif.compo
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LocationService } from './location.service';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { VoitureModifierComponent } from './voiture-modifier/voiture-modifier.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
     AppComponent,
     AdminLayoutComponent,
     SuperAdminComponent,
+    VoitureModifierComponent,
    
     
   ],

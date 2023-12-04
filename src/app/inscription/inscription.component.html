@@ -1,5 +1,10 @@
-<div class="container">
-    <div class="formulaire">
+<div class="container" style="display: flex;align-items: center; justify-content: center;">
+    <div class="formulaire" style="background-color: white; margin-top: 10%; width: 50%;margin-left: -9%;">
+      <div class="photo">
+        <img src="../../assets/img/Group 119.png" height="100%" width="100%" alt="..">
+        <p>Vous avez déjà un compte? <br> <strong  [routerLink]="['../login-page']" style="font-weight: bold;cursor: pointer;"><a style="color: #308D89;" href=""> Se connecter</a> </strong></p>
+      </div>
+      <div style="display: flex;justify-content: center;align-items: center;margin-top: 10px;">
         <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" >
         <div class="input-container" >
             <div class="input-field">
@@ -32,9 +37,10 @@
             </div>
           </div>
           <div mat-dialog-actions class="actions">
-            <button  mat-button mat-dialog-close><i class='bx bx-x'></i> Annuler</button>
-            <button mat-raised-button color="primary" type="submit" [disabled]="!adminForm.valid"> <i class='bx bx-check'></i>{{"Enregistrer" }}</button>
+            <!-- <button  mat-button mat-dialog-close><i class='bx bx-x'></i> Annuler</button> -->
+            <button mat-raised-button color="primary" type="submit" [disabled]="!adminForm.valid"> <i class='bx bx-check'></i>{{"S'inscrire" }}</button>
           </div> 
      </form>
+    </div>
     </div>
 </div>

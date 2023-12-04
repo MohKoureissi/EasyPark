@@ -17,12 +17,15 @@ export class AdminLayoutComponent implements OnInit {
 
    isBlankPage : boolean = false;
    isLoginPage : boolean = false;
+   isInscription : boolean = false;
 
   constructor( public location: Location, private router: Router) {
     this.router.events.subscribe((event) => {
         if (event instanceof NavigationEnd) {
            this.isBlankPage = event.url === '/';
            this.isLoginPage = event.url.endsWith('login-page') || event.url === '/login';
+           this.isInscription = event.url.endsWith('inscription') || event.url === '/inscription';
+
         }
       });
   }

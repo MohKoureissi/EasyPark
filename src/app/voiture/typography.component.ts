@@ -6,6 +6,7 @@ import { AdminParking } from 'app/model/adminParking';
 import { Voiture } from 'app/model/voiture';
 import { ServiceVoitureService } from 'app/service-voiture.service';
 import { VoitureFormulaireComponent } from 'app/voiture-formulaire/voiture-formulaire.component';
+import { VoitureModifierComponent } from 'app/voiture-modifier/voiture-modifier.component';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -87,7 +88,16 @@ export class TypographyComponent  {
       }
     });
     // this.chargerData();
-
+  }
+  openModifierDialog(voiture:Voiture): void {
+    const dialogRef = this.dialogRef.open(VoitureModifierComponent, {
+      data: { "voiture" : voiture }
+    });
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      // Effectuez des actions nécessaires après la fermeture du dialogue
+      console.log('Dialogue fermé avec résultat :', result);
+    });
   }
 
   }

@@ -30,13 +30,12 @@ export class LocationVoitureComponent implements OnInit {
     this.adminParking = JSON.parse(localStorage.getItem('idAdminParking')!);
     console.log("Admin recuperer efffff ", this.adminParking);
     
-    // this.dataSource = new MatTableDataSource(this.locations);
     this.chargerLogation();
   }
 
   ngOnInit(): void {
     this.locationService.update$.subscribe(()=>{
-      this. chargerLogation();
+      this.chargerLogation();
     });
     this.authService.update$.subscribe(() =>{
       this.adminParking= JSON.parse(localStorage.getItem('idAdminParking')!);
@@ -48,9 +47,9 @@ export class LocationVoitureComponent implements OnInit {
       // const donner = location.filter((data :any)=> data.location.voiture.adminParking.idAdminParking === this.adminParking)
       //   console.log("date========", donner);
       // this.locations = location;
-        this.locations = location.filter((data :any)=> data.voiture.adminParking.idAdminParking === this.adminParking)
-      this.locationfiltrer = this.locations
-      this.dataSource = new MatTableDataSource(this.locationfiltrer );
+         const data= this.locations.filter((data :any)=> data.voiture.adminParking.idAdminParking === this.adminParking)
+       this.locations = location
+      this.dataSource = new MatTableDataSource(this.locations );
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });

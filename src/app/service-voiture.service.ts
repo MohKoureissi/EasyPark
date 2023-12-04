@@ -52,14 +52,14 @@ export class ServiceVoitureService {
   }
 
   // Modification
-updateVoiture(id: number, voiture: any, photo2?: File, photo3?: File, photo4?: File): Observable<any> {
+updateVoiture(idVoiture: number, voiture: any, photo2?: File, photo3?: File, photo4?: File): Observable<any> {
     const formData = new FormData();
     formData.append('voiture', JSON.stringify(voiture));
     if (photo2) formData.append('photo2', photo2);
     if (photo3) formData.append('photo3', photo3);
     if (photo4) formData.append('photo4', photo4);
 
-    return this.http.put(`${this.apiUrl}/update/${id}`, formData);
+    return this.http.put(`${this.apiUrl}/update/${idVoiture}`, formData);
   }
 
 }
