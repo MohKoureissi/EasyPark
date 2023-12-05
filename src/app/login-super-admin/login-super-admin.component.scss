@@ -1,0 +1,111 @@
+.container{
+    background-color: #308D89;
+}
+.content{
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+}
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  .btn-info {
+    color: #ffffff;
+    background-color: #308D89;
+    border-color: #00bcd4;
+    box-shadow: none;
+}
+  
+
+/* *{
+    background: #fff;
+} */
+.card{
+  width: 400px;
+  height: 400px;
+  background: #fff;
+  margin: auto;
+  margin-top: 2rem;
+  position: relative;
+}
+.card-head{
+  width: 80%;
+  height: 8rem;
+  background: #202882;
+  /* margin-left: 2rem; */
+  position: absolute;
+  top: -5%;
+  border-radius: 10px;
+  left: 2.5rem;
+}
+.icon{
+  display: flex;
+  justify-content: center;
+  gap:2rem ;
+  color: #fff;
+}
+.icon i {
+  font-size: 25px;
+  color: #fff;
+}
+h3{
+  text-align: center;
+  font-size: 22px;
+  margin-top: 2rem;
+  color: #fff;
+}
+form{
+ margin-top: 10rem;
+ margin-left: 3rem;
+}
+input{
+  width: 250px;
+  border: none;
+  border-bottom: 1px solid #eee;
+  height: 40px;
+  outline: none;
+}
+.input-field{
+  margin-bottom: 20px;
+  display: block;
+  align-items: center;
+  gap: 1rem;
+}
+.input-field i {
+  font-size: 25px;
+  color: #202882;
+}
+.btn{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+button{
+  padding: 10px 10px;
+  width: 250px;
+  font-size: 22px;
+  color: #fff;
+  background: #308D89;
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+  border-radius: 10px;
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+button:hover{
+  transition: 25px 30px rgba(0,0,0,0.5);
+  color: #a0a4d4;
+}
+.forme{
+  min-width: 150px; 
+  max-width: 500px;
+    width: 100%;
+}

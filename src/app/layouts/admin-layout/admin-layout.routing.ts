@@ -10,6 +10,7 @@ import { LoginPageComponent } from 'app/login-page/login-page.component';
 import { AuthGardeService } from 'app/auth-garde.service';
 import { Component } from '@angular/core';
 import { InscriptionComponent } from 'app/inscription/inscription.component';
+import { LoginSuperAdminComponent } from 'app/login-super-admin/login-super-admin.component';
 
 export const AdminLayoutRoutes: Routes = [
    
@@ -17,6 +18,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'login-page',     component: LoginPageComponent },
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'inscription',   component: InscriptionComponent},
+    { path: 'login-super-admin',   component: LoginSuperAdminComponent},
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'vente',     component: VenteComponent },
     { path: 'typography',     component: TypographyComponent },

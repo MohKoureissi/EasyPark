@@ -18,6 +18,7 @@ export class AdminLayoutComponent implements OnInit {
    isBlankPage : boolean = false;
    isLoginPage : boolean = false;
    isInscription : boolean = false;
+   isLoginSuper : boolean= false;
 
   constructor( public location: Location, private router: Router) {
     this.router.events.subscribe((event) => {
@@ -25,6 +26,7 @@ export class AdminLayoutComponent implements OnInit {
            this.isBlankPage = event.url === '/';
            this.isLoginPage = event.url.endsWith('login-page') || event.url === '/login';
            this.isInscription = event.url.endsWith('inscription') || event.url === '/inscription';
+           this.isLoginSuper = event.url.endsWith('login-super-admin') || event.url === '/login-super-admin';
 
         }
       });
@@ -35,6 +37,7 @@ export class AdminLayoutComponent implements OnInit {
         if (event instanceof NavigationEnd) {
            this.isBlankPage = event.url === '/';
            this.isLoginPage = event.url.endsWith('login-page') || event.url === '/login';
+           this.isLoginSuper = event.url.endsWith('login-super-admin') || event.url === '/login-super-admin';
         }
       });
       

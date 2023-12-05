@@ -23,5 +23,14 @@ export class SuperAdminServiceService {
   updateSuperAdmin(superAdmin: SuperAdmin): Observable<SuperAdmin> {
     return this.http.put<SuperAdmin>(`${this.baseUrl}/update`, superAdmin);
   }
+
+  loginSuperAdmin(email: string, motdepasse: string): Observable<any> {
+    const body = {
+      email: email,
+      motdepasse: motdepasse,
+    };
+  
+    return this.http.get(`${this.baseUrl}/login?email=${email}&motdepasse=${motdepasse}`);
+  }
 }
 

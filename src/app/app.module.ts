@@ -13,18 +13,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
-import { VenteComponent } from './vente/vente.component';
-import { VenteFormulaireComponent } from './vente-formulaire/vente-formulaire.component';
-import { MaintenanceComponent } from './maintenance/maintenance.component';
-import { MaintenanceFormulaireComponent } from './maintenance-formulaire/maintenance-formulaire.component';
-import { LoginPageComponent } from './login-page/login-page.component';
 import { SuperAdminComponent } from './super-layout/super-admin/super-admin.component';
-import { DashboardSuperAdminComponent } from './dashboard-super-admin/dashboard-super-admin.component';
-import { ParkingActifComponent } from './parking-actif/parking-actif.component';
-import { ParkingInactifComponent } from './parking-inactif/parking-inactif.component';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LocationService } from './location.service';
-import { InscriptionComponent } from './inscription/inscription.component';
 import { VoitureModifierComponent } from './voiture-modifier/voiture-modifier.component';
 
 

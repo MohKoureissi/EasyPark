@@ -17,6 +17,7 @@ import { VenteFormulaireComponent } from 'app/vente-formulaire/vente-formulaire.
 import { MaintenanceFormulaireComponent } from 'app/maintenance-formulaire/maintenance-formulaire.component';
 import { LoginPageComponent } from 'app/login-page/login-page.component';
 import { InscriptionComponent } from 'app/inscription/inscription.component';
+import { LoginSuperAdminComponent } from 'app/login-super-admin/login-super-admin.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { InscriptionComponent } from 'app/inscription/inscription.component';
     VenteFormulaireComponent,
     MaintenanceFormulaireComponent,
     LoginPageComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    LoginSuperAdminComponent
   ]
 })
 

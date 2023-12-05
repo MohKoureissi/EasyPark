@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
     isBlankPage: boolean = false
     isLoginPage:boolean = false;
     isInscription: boolean = false;
+    isLoginSuper: boolean = false;
 
     constructor(location: Location,  private element: ElementRef, private router: Router) {
       this.location = location;
@@ -27,6 +28,8 @@ export class NavbarComponent implements OnInit {
                this.isBlankPage = event.url === '/';
                this.isLoginPage = event.url.endsWith('login-page') || event.url === '/login';
                this.isInscription = event.url.endsWith('inscription') || event.url === '/inscription';
+               this.isLoginSuper = event.url.endsWith('login-super-admin') || event.url === '/login-super-admin';
+
             }
           });
     }
